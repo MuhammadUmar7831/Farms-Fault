@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
+/* index.css */
+.custom-scrollbar {
+    /* Set height and overflow properties to enable scrolling */
+    max-height: 400px; /* Adjust as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Custom scrollbar styles for the specific container */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 12px; /* Width of the vertical scrollbar */
+    height: 8px; /* Height of the horizontal scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #E7DBCA; /* Background color of the scrollbar track */
+    border-radius: 4px; /* Roundness of the scrollbar track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #181C1E; /* Color of the scrollbar handle */
+    border-radius: 8px; /* Fully rounded scrollbar handle for smoother appearance */
+    height: 20px; /* Height of the scrollbar thumb, adjust as needed */
+}
+
+/* Optional: Adjust the thumb's size and behavior on hover */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color when hovered */
+}
+
+/* Hide the arrows in the scrollbar */
+.custom-scrollbar::-webkit-scrollbar-button {
+    display: none; /* Hide the arrows */
+}
