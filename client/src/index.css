@@ -4,37 +4,46 @@
 
 
 
-
 /* index.css */
 .custom-scrollbar {
-    /* Set height and overflow properties to enable scrolling */
-    max-height: 400px; /* Adjust as needed */
-    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 400px;
+    overflow-y: auto;
 }
 
-/* Custom scrollbar styles for the specific container */
+/* For wider screens (desktop) */
 .custom-scrollbar::-webkit-scrollbar {
-    width: 12px; /* Width of the vertical scrollbar */
-    height: 8px; /* Height of the horizontal scrollbar */
+    width: 12px; /* Default for larger screens */
+}
+
+/* Medium screens (tablet) */
+@media (max-width: 1024px) {
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 8px; /* Thinner scrollbar for tablets */
+    }
+}
+
+/* Small screens (mobile) */
+@media (max-width: 640px) {
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 4px; /* Thinner scrollbar for mobile devices */
+    }
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-    background: #E7DBCA; /* Background color of the scrollbar track */
-    border-radius: 4px; /* Roundness of the scrollbar track */
+    background: #E7DBCA;
+    border-radius: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #181C1E; /* Color of the scrollbar handle */
-    border-radius: 8px; /* Fully rounded scrollbar handle for smoother appearance */
-    height: 20px; /* Height of the scrollbar thumb, adjust as needed */
+    background-color: #181C1E;
+    border-radius: 8px;
+    height: 2px;
 }
 
-/* Optional: Adjust the thumb's size and behavior on hover */
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Color when hovered */
+    background: #555;
 }
 
-/* Hide the arrows in the scrollbar */
 .custom-scrollbar::-webkit-scrollbar-button {
-    display: none; /* Hide the arrows */
+    display: none;
 }

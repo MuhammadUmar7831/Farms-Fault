@@ -4,15 +4,12 @@ const SideBarLinks = ({
   href,
   svg,
   text,
-  containerClass = "mt-10 border-2 w-fit mx-auto",
-  linkClass = "flex items-center gap-3",
-  textClass = "text-2xl",
 }) => {
   return (
-    <div className={containerClass}>
-      <a className={linkClass} href={href}>
+    <div className="mt-10 w-fit ml-4 lg:ml-10">
+      <a className="flex items-center gap-3" href={href}>
         <div>{svg}</div>
-        <p className={textClass}>{text}</p>
+        <p className=" text-sm lg:text-lg xl:text-2xl">{text}</p>
       </a>
     </div>
   );
