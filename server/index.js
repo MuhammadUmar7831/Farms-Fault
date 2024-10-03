@@ -1,5 +1,7 @@
 import express from "express";
 import connectDB from "./db.js";
+import authRouter from "./routes/auth.route.js";
+import errorRouter from "./routes/errorReport.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -13,7 +15,8 @@ app.get("/", (req, res) => {
   return res.status(200).send({ message: "Hello World" });
 });
 
-// app.use("/api/auth", authRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/error", errorRouter);
 
 // following route run when a route call next and no one is there to listen
 // the route will call errorHandler that will create a custom error and pass the error to this
