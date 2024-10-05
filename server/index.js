@@ -2,6 +2,7 @@ import express from "express";
 import connectDB from "./db.js";
 import authRouter from "./routes/auth.route.js";
 import errorRouter from "./routes/errorReport.route.js";
+import dashboardRouter from "./routes/dashboard.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,9 +18,8 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRouter);
 app.use("/api/error", errorRouter);
+app.use("/api/dashboard", dashboardRouter);
 
-// following route run when a route call next and no one is there to listen
-// the route will call errorHandler that will create a custom error and pass the error to this
 app.use((err, req, res, next) => {
   const message = err.message || "Internal server error";
   res.status(500).send({

@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+/* index.css */
+.custom-scrollbar {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* For wider screens (desktop) */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 12px; /* Default for larger screens */
+}
+
+/* Medium screens (tablet) */
+@media (max-width: 1024px) {
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 8px; /* Thinner scrollbar for tablets */
+    }
+}
+
+/* Small screens (mobile) */
+@media (max-width: 640px) {
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 4px; /* Thinner scrollbar for mobile devices */
+    }
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #E7DBCA;
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #181C1E;
+    border-radius: 8px;
+    height: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button {
+    display: none;
+}
