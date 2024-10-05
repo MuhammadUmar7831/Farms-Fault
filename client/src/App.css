@@ -24,3 +24,28 @@
 .loginBtnShadow {
     filter: drop-shadow(0px 5.07068px 5.07068px rgba(0, 0, 0, 0.25));
 }
+.custom-overlay {
+    position: absolute;
+    left: 20px; /* Position it to the right of the marker */
+    top: -10px; /* Slight vertical offset */
+    background-color: rgba(0, 0, 0, 0.7); /* Make the background semi-transparent */
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 100; /* Ensure it's on top of the map/marker */
+}
+.heading {
+    @apply text-[33px] poppins font-semibold
+}
+
+.heading-lg {
+    @apply text-[35px] promoTest font-bold
+}
+
+.txt {
+    @apply poppins text-[13.66px]
+}
+
+.txt-lg {
+    @apply poppins text-[18.66px]
+}
