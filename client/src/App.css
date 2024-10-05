@@ -16,6 +16,22 @@
     font-family: Poppins;
 }
 
+.heading {
+    @apply text-[33px] poppins font-semibold
+}
+
+.heading-lg {
+    @apply text-[35px] promoTest font-bold
+}
+
+.txt {
+    @apply poppins text-[13.66px]
+}
+
+.txt-lg {
+    @apply poppins text-[18.66px]
+}
+
 .authForm {
     border-radius: 7px;
     box-shadow: 1px 11px 35.3px rgba(0, 0, 0, 0.08);

@@ -1,10 +1,11 @@
 import express from "express";
-import { signin, signup } from "../controllers/auth.controller.js";
+import { signin, signup, verify } from "../controllers/auth.controller.js";
 import tryCatch from "../middlewares/tryCatch.js";
 
 const router = express.Router();
 
 router.post("/signup", tryCatch(signup));
 router.post("/signin", tryCatch(signin));
+router.get("/verify", tryCatch(verify));
 
 export default router;
