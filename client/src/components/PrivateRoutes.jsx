@@ -1,15 +1,31 @@
-import React, { useState } from "react";
-import SidePanel from "./sidePanel/SidePanel";
+import React, { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-// import { Hamburger } from 'hamburger-react';
+import { verifyApiCall } from "../apis/auth.api";
 
 export default function PrivateRoutes() {
-  const [user, setUser] = useState("hell");
-  const [isSidePanelOpen, setIsSidePanelOpen] = useState(true); // State to manage SidePanel visibility
+  const [loggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  return user !== null ? (
-    <div className="bg-[#dacdbb] flex">
-      <main className={`w-[25%] sm:w-[20%] bg-[#F5EAD9] ${isSidePanelOpen ? 'block' : 'hidden'} sm:block`}>
+  async function verifyLogin() {
+    if (!loggedIn) {
+      const res = await verifyApiCall();
+      setIsLoggedIn(res.success);
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    verifyLogin();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return loggedIn ? (
+    <>
+      <div className="bg-[#dacdbb] flex">
+      <main className={`w-[25%] sm:w-[20%] bg-[#F5EAD9] sm:block`}>
 
         <SidePanel />
       </main>
@@ -18,6 +34,7 @@ export default function PrivateRoutes() {
         <Outlet />
       </section>
     </div>
+    </>
   ) : (
     <Navigate to="/signin" />
   );

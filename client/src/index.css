@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-/* index.css */
 .custom-scrollbar {
     max-height: 400px;
     overflow-y: auto;
@@ -46,4 +43,24 @@
 
 .custom-scrollbar::-webkit-scrollbar-button {
     display: none;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scrollbar-width: 0px;
+    scrollbar-width: none;
+    @apply text-tertiary
+}
+
+html,
+body,
+#root {
+    width: 100%;
+    height: 100%;
+}
+
+#root{
+    @apply bg-primary
 }

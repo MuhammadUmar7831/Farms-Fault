@@ -1,12 +1,42 @@
-*{
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-
+@font-face {
+    font-family: PromoTest;
+    src: url("/fonts/PromoTest.ttf");
 }
 
-body,
-html {
-    width: 100%;
-    height: 100%;
+@font-face {
+    font-family: Poppins;
+    src: url("/fonts/Poppins-Regular.ttf");
+}
+
+.promoTest {
+    font-family: PromoTest;
+}
+
+.poppins {
+    font-family: Poppins;
+}
+
+.heading {
+    @apply text-[33px] poppins font-semibold
+}
+
+.heading-lg {
+    @apply text-[35px] promoTest font-bold
+}
+
+.txt {
+    @apply poppins text-[13.66px]
+}
+
+.txt-lg {
+    @apply poppins text-[18.66px]
+}
+
+.authForm {
+    border-radius: 7px;
+    box-shadow: 1px 11px 35.3px rgba(0, 0, 0, 0.08);
+}
+
+.loginBtnShadow {
+    filter: drop-shadow(0px 5.07068px 5.07068px rgba(0, 0, 0, 0.25));
 }

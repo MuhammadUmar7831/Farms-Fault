@@ -1,22 +1,10 @@
 import mongoose from "mongoose";
 
+// Define the user schema
 const userSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
-      required: true,
-    },
-    lastName: {
-      type: String,
-      required: true,
-    },
-    dob: {
-      type: String,
-      required: true,
-    },
-    password: {
-      type: String,
-      required: true,
       required: [true, "First name is required"],
       minlength: [3, "First name must be at least 3 characters long"], // Min length validation
     },
@@ -33,7 +21,7 @@ const userSchema = new mongoose.Schema(
         validator: function (v) {
           return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); // Regular expression for validating email
         },
-        message: (props) => `${props.value}`, // Custom error message for invalid email
+        message: (props) => `${props.value} is not a valid email!`, // Custom error message for invalid email
       },
     },
     dob: {
@@ -53,6 +41,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Create and export the User model
 const User = mongoose.model("User", userSchema);
 
 export default User;

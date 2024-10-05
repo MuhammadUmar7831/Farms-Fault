@@ -9,10 +9,12 @@ import Account from "./pages/Account";
 import Dashboard from "./pages/Dashboard";
 import ReportError from "./pages/ReportError";
 import ViewMap from "./pages/ViewMap";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
