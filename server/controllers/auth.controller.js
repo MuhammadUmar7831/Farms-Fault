@@ -33,6 +33,7 @@ export const signup = async (req, res, next) => {
 };
 
 export const signin = async (req, res, next) => {
+  console.log('first')
   const { email, password } = req.body;
   const validUser = await User.findOne({ email });
   if (!validUser) return next(errorHandler(404, "User not found!"));

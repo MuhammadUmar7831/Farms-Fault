@@ -4,12 +4,12 @@ import connectDB from "./db.js";
 import authRouter from "./routes/auth.route.js";
 import errorRouter from "./routes/errorReport.route.js";
 import dashboardRouter from "./routes/dashboard.route.js";
-
+import cookieParser from "cookie-parser";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 connectDB();
-
+app.use(cookieParser()) ;
 app.use(express.json());
 app.use(
   cors({

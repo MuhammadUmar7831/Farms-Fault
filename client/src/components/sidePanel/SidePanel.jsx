@@ -13,12 +13,12 @@ const SidePanel = () => {
       text: "Dashboard",
     },
     {
-      href: "/reportError",
+      href: "/report-error",
       svg: <ReportErrorSVG className=" w-2 sm:w-3 lg:w-4 border" />,
       text: "Report an Error",
     },
     {
-      href: "/viewMap",
+      href: "/view-map",
       svg: <ViewMapSvg className="w-2 sm:w-3 lg:w-4" />,
       text: "View Map",
     },

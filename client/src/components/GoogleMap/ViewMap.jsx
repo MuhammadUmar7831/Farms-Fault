@@ -1,19 +1,9 @@
-import React, {useEffect, useState, useCallback} from "react";
+import React, { useState, useCallback} from "react";
 import {GoogleMap, useJsApiLoader, MarkerF, OverlayView} from "@react-google-maps/api";
-import {useGeolocation} from "../hooks/useGeoLocation";
-import convertToDMS from "../utils/mapCordinatesConvertor";
+import convertToDMS from "../../utils/mapCordinatesConvertor";
 
-const containerStyle = {
-    width: "650px",
-    height: "300px",
-};
-const points = [
-    {lat: 40.0139, lng: -83.0104}, // Near a farm in Ohio
-    {lat: 40.0141, lng: -83.0104}, // Slightly north of the first point, Ohio
-    {lat: 40.0143, lng: -83.0104}, // Slightly further north, Ohio
-];
 
-function Map() {
+function ViewMap({points,width,height}) {
     const {isLoaded} = useJsApiLoader({
         id: "google-map-script",
         googleMapsApiKey: "AIzaSyCt0RICkMcvoqaM-8Yog82-5cEw1OC3TYM",
@@ -30,20 +20,18 @@ function Map() {
     }, []);
     return isLoaded ? (
         <div className="rounded-xl ">
-            <h2 className="txt-lg ">Enter error location in below map</h2>
             <GoogleMap 
-                mapContainerStyle={containerStyle}
+                mapContainerStyle={{width:width,height:height}}
                 center={points[0]}
-                zoom={35}
+                zoom={20}
                 mapTypeId="satellite"
                 onLoad={onLoad}
-                onUnmount={onUnmount}
-                
+                onUnmount={onUnmount}                
             >
-                {points.map((point, index) => (
+                {points?.map((point, index) => (
                     <MarkerF key={`marker-${index}`} position={point} icon={"./markerIcon.png"} />
                 ))}
-                {points.map((point, index) => (
+                {points?.map((point, index) => (
                     <OverlayView
                         key={`overlay-${index}`}
                         position={{lat: point.lat + 0.000022, lng: point.lng + 0.000015}} // Adjusted for right positioning
@@ -56,11 +44,10 @@ function Map() {
                     </OverlayView>
                 ))}
             </GoogleMap>
-            <h2 className="txt-lg ">Enter error location in below map</h2>
         </div>
     ) : (
         <div>Loading Map...</div>
     );
 }
 
-export default React.memo(Map);
+export default React.memo(ViewMap);

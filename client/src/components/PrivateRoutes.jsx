@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { verifyApiCall } from "../apis/auth.api";
+import SidePanel from "./sidePanel/SidePanel";
 
 export default function PrivateRoutes() {
   const [loggedIn, setIsLoggedIn] = useState(false);
@@ -9,6 +10,7 @@ export default function PrivateRoutes() {
   async function verifyLogin() {
     if (!loggedIn) {
       const res = await verifyApiCall();
+      console.log(res)
       setIsLoggedIn(res.success);
       setLoading(false);
     }
