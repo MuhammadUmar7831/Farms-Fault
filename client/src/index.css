@@ -50,13 +50,13 @@
     padding: 0px;
     box-sizing: border-box;
     scrollbar-width: 0px;
-    scrollbar-width: none;
     @apply text-tertiary
 }
 
 html,
 body,
 #root {
+    scrollbar-width: none;
     width: 100%;
     height: 100%;
 }

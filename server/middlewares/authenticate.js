@@ -6,7 +6,6 @@ export const authenticate = async (req, res, next) => {
     const token = req.cookies["access_token"];
     if (!token) return next(errorHandler(401, "Please Login to Continue."));
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(decoded.id);
     req.userId = decoded.id;
     next();
   } catch (error) {

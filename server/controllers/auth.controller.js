@@ -4,8 +4,8 @@ import { errorHandler } from "../errors/error.js";
 import User from "../models/user.model.js";
 
 export const signup = async (req, res, next) => {
-  const { firstName, lastName, email, dob, password, avatar, remember } =
-    req.body;
+  // avatar is skipped for now
+  const { firstName, lastName, email, dob, password, remember } = req.body;
   // firstName, lastName and email validation is handeled by mongoose refer /models/user.model.js
 
   // password validation
@@ -16,7 +16,7 @@ export const signup = async (req, res, next) => {
     lastName,
     dob,
     password: hashedPassword,
-    avatar,
+    // avatar,
     email,
   });
   await newUser.save();
@@ -26,14 +26,15 @@ export const signup = async (req, res, next) => {
     return res
       .cookie("access_token", token, { httpOnly: true })
       .status(201)
-      .send({ success: true, data: user });
+      .send({ success: true, data: user, message: "Account Created!!!" });
   } else {
-    return res.status(201).send({ success: true, data: user });
+    return res
+      .status(201)
+      .send({ success: true, data: user, message: "Account Created!!!" });
   }
 };
 
 export const signin = async (req, res, next) => {
-  console.log('first')
   const { email, password } = req.body;
   const validUser = await User.findOne({ email });
   if (!validUser) return next(errorHandler(404, "User not found!"));

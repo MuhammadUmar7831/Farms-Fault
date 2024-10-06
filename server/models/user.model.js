@@ -19,9 +19,9 @@ const userSchema = new mongoose.Schema(
       unique: true,
       validate: {
         validator: function (v) {
-          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); // Regular expression for validating email
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); 
         },
-        message: (props) => `${props.value} is not a valid email!`, // Custom error message for invalid email
+        message: (props) => `${props.value} is not a valid email!`,
       },
     },
     dob: {
@@ -40,6 +40,15 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+userSchema.post("save", function (error, doc, next) {
+  if (error.name === "MongoServerError" && error.code === 11000) {
+    // Check for duplicate key error (code 11000)
+    next(new Error("Email already registered."));
+  } else {
+    next(error); // Forward other errors
+  }
+});
 
 // Create and export the User model
 const User = mongoose.model("User", userSchema);

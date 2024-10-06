@@ -30,7 +30,6 @@ export default function Signin() {
     if (response.success) {
       toast.success(response.message);
       navigate("/dashboard");
-      console.log('first')
     } else {
       toast.error(response.message);
     }
