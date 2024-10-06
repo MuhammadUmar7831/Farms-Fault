@@ -6,12 +6,11 @@ const errorEnumSchema = new mongoose.Schema(
             required: true,
         },
         points: {
-            type: number,
+            type: Number,
             required: true,
         }
     }
 );
 
 const ErrorEnum = mongoose.model("ErrorEnum", errorEnumSchema);
-
 export default ErrorEnum;

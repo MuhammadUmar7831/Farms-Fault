@@ -19,6 +19,7 @@ const useCloudinary = () => {
           withCredentials: false
         }
       );
+
       return { success: true, imageUrl: response.data.secure_url };
     } catch (err) {
       console.log(err);
@@ -51,6 +52,7 @@ const useCloudinary = () => {
           withCredentials: false
         }
       );
+      console.log('Image deleted successfully');
       return { success: true };
     } catch (err) {
       console.log(err);
