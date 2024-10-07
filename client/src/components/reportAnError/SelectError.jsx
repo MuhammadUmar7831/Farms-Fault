@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {getErrorEnumApiCall} from "../../apis/errorEnum.api";
 
-function SelectError({errors,setType, setPoints}) {
+function SelectError({type,errors,setType, setPoints}) {
     const [errorTypes, setErrorTypes] = useState([]);
     useEffect(() => {
         const ApiCall = async () => {
@@ -19,16 +19,14 @@ function SelectError({errors,setType, setPoints}) {
         const {points, type} = JSON.parse(e.target.value);
         setPoints(points);
         setType(type);
-        console.log(errors.type);
-        console.log(points, type);
     };
     console.log(errors);
     return (
         <div className={`relative inline-block w-full border-b-2  ${errors.type ? "border-red-500" : "border-tertiary"}`}>
-            <select
-                onChange={(e) => handleSelectType(e)}
+           <select
+                onChange={handleSelectType}
+                value={type ? JSON.stringify({ type, points: errorTypes.find(err => err.name === type)?.points }) : ""}
                 className="block appearance-none promoTest w-full py-3 text-xl bg-primary focus:outline-none"
-                defaultValue="" // Set default value for select
             >
                 <option value="" disabled selected>
                     Select Error Type

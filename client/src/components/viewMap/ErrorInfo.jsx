@@ -12,10 +12,10 @@ function ErrorInfo({setOpenInfo, selectedPoint}) {
         setCurrentPhotoIndex((prevIndex) => Math.max(prevIndex - 1, 0));
     };
     return (
-        <div className="absolute top-0 left-0 lg:right-0 lg:top-0  bg-secondary w-[100%] lg:w-96 flex flex-col p-3 lg:p-10 lg:h-full">
+        <div className="absolute top-0  lg:right-0 z-50  bg-secondary w-[100%] lg:w-96 flex flex-col p-3 lg:p-10 lg:h-full">
             <button
                 onClick={() => setOpenInfo(false)}
-                className="absolute top-0 left-0 z-10 lg:left-3 lg:top-3 bg-[#E7DBCA] p-1 rounded-full shadow-md"
+                className="absolute top-0 left-0 z-50 lg:left-3 lg:top-3 bg-[#E7DBCA] p-1 rounded-full shadow-md"
             >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path

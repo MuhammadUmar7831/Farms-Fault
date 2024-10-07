@@ -39,8 +39,8 @@ export default function Account() {
   }
 
   return (
-    <main className="bg-primary pt-10">
-      <h1 className="promoTest font-semibold text-[36px] ml-10">
+    <main className="bg-primary py-10 w-full">
+      <h1 className="promoTest font-semibold text-[36px] mx-2 md:ml-10">
         Account settings
       </h1>
       <div className="flex flex-wrap gap-[30px] mt-10 max-w-[728px] justify-center mx-auto px-2 md:px-0">

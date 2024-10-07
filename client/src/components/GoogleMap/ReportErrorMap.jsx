@@ -1,16 +1,15 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { GoogleMap, useJsApiLoader, MarkerF, OverlayView, Autocomplete } from "@react-google-maps/api";
 import convertToDMS from "../../utils/mapCordinatesConvertor";
-
 const containerStyle = {
-    width: "650px",
+    width: "100%",
     height: "400px",
 };
 
 function ReportErrorMap({point, setPoint}) {
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: "AIzaSyCt0RICkMcvoqaM-8Yog82-5cEw1OC3TYM",
+        googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API_KEY,
         libraries: ["places"], 
     });    
     const [map, setMap] = useState(null);
@@ -49,7 +48,7 @@ function ReportErrorMap({point, setPoint}) {
         setPoint(newPosition);
     };
     return isLoaded ? (
-        <div className="rounded-xl">
+        <div className="rounded-xl w-[100%]">
             <h2 className="txt-lg mb-2">Enter error location in the map below</h2>
             <div className="relative">
                 <div className="absolute top-4 left-4 z-10 w-64">
@@ -58,7 +57,7 @@ function ReportErrorMap({point, setPoint}) {
                             ref={inputRef}
                             type="text"
                             placeholder="Search your location"
-                            className="w-full px-3 py-2 border rounded-lg"
+                            className="w-2/3 lg:w-full px-3 py-2 border rounded-lg"
                         />
                     </Autocomplete>
                 </div>
@@ -89,7 +88,7 @@ function ReportErrorMap({point, setPoint}) {
             </div>
 
             <div className="flex items-center my-2 space-x-2 ">
-                <h2 className="txt-lg ">Current error location</h2>
+                <h2 className="txt-lg text-sm lg:text-base">Current error location</h2>
                 {point ? (
                     <div className="text-sm  flex space-x-2">
                         <div>{convertToDMS(point.lat, "lat")}</div>
