@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Filter from "../svgs/leaderBoardSvgs/Filter.svg";
-import RankIcon from "../svgs/dashboardSvgs/Rank.svg";
 import img from "../../public/images/leaderboard/image.png";
 import RankCard from "../components/leaderboard/RankCard";
+import { getleaderBoardRankedUsers } from "../apis/leaderboard.api";
 export default function Leaderboard() {
 
   const [selectedOption, setSelectedOption] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
+  const [leaderBoardUsers,setLeaderBoardUsers]=useState([]);
 
   const handleToggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -19,62 +20,27 @@ export default function Leaderboard() {
   };
 
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getleaderBoardRankedUsers(selectedOption);
+        console.log("response ---> on frontend ",response);
+        setLeaderBoardUsers(response.data);
+        console.log("leaderBoardData ---> on frontend ",leaderBoardUsers);
+        // Assuming data.user and data.stats structure matches your example
+      
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-  const rankCardData = [
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-    { rank: "1st", userImage: img, userName: "user1", score: 100 },
-    { rank: "2nd", userImage: img, userName: "user1", score: 100 },
-    { rank: "3rd", userImage: img, userName: "user1", score: 100 },
-  ];
+    fetchData();
+  }, [selectedOption]);
 
   return (
-    <main className=" pl-5 lg:pl-10 h-screen">
-      <div className=" w-[65%] lg:w-[60%] flex items-center justify-between mt-10  ml-[5%] lg:ml-0">
-        <h1 className="text-2xl lg:text-3xl xl:text-4xl">Leader Board</h1>
+    <main className=" px-4 sm:px-0 sm:pl-5 lg:pl-10 bg-primary ">
+      <div className=" sm:w-[73%] md:w-[75%] lg:w-[80%] xl:w-[58%] flex items-center justify-between mt-10  sm:ml-[5%] lg:ml-0">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl">Leader Board</h1>
         <div className="flex justify-between gap-4 items-center">
           <p className=" text-sm lg:text-base">Filter by time </p>
           <button
@@ -84,22 +50,22 @@ export default function Leaderboard() {
         </button>
         </div>
         {showDropdown && (
-          <div className="absolute right-[10%] lg:right-[20%] xl:right-[24%] top-20  w-fit px-7 bg-[#e7dbca] border border-gray-300 rounded-md shadow-lg z-10">
-            <ul className="flex flex-col justify-center items-center ">
+          <div className="absolute right-4 sm:right-7 md:right-10 lg:right-[6%] xl:right-[26%] top-20 xl:top-24  w-fit px-4 lg:px-7 bg-[#e7dbca]  rounded-md shadow-lg z-10">
+            <ul className="flex flex-col justify-center items-center text-xs">
               <li
-                onClick={() => handleSelectOption('Weekly')}
+                onClick={() => handleSelectOption('weekly')}
                 className="p-2 rounded-lg hover:bg-gray-100 cursor-pointer"
               >
                 Weekly
               </li>
               <li
-                onClick={() => handleSelectOption('Monthly')}
+                onClick={() => handleSelectOption('monthly')}
                 className="p-2 rounded-lg hover:bg-gray-100 cursor-pointer"
               >
                 Monthly
               </li>
               <li
-                onClick={() => handleSelectOption('All Time')}
+                onClick={() => handleSelectOption('all time')}
                 className="p-2 rounded-lg hover:bg-gray-100 cursor-pointer"
               >
                 All Time
@@ -109,21 +75,21 @@ export default function Leaderboard() {
         )}
       </div>
 
-      <section className=" my-8 px-3 h-[420px] ml-[7%] w-[60%] lg:w-[50%]">
-        <div className="flex justify-between items-center text-lg xl:text-xl py-2 px-7">
+      <section className=" my-8 px-3 h-[420px] sm:ml-[7%] sm:w-[70%] xl:w-[50%]">
+        <div className="flex justify-between items-center text-sm sm:text-lg xl:text-xl py-2 px-3 sm:px-7">
           <p>Rank</p>
           <p>Points</p>
         </div>
 
-        <section className="custom-scrollbar overflow-y-auto px-4">
-          {rankCardData.map((card, index) => (
+        <section className="custom-scrollbar overflow-y-auto px-1 sm:px-4">
+          {leaderBoardUsers.map((card, index) => (
             <RankCard
               key={index}
               className="" // Add any className if needed
               rank={card.rank}
-              userImage={card.userImage}
-              userName={card.userName}
-              score={card.score}
+              userImage={card.avatar}
+              userName={card.name}
+              score={card.totalPoints}
             />
           ))}
         </section>

@@ -15,52 +15,39 @@ export default function Dashboard() {
   const [stats, setStats] = useState({ totalPoints: 0, totalErrors: 0, rank: 0 });
   const [pageNumber,setPageNumber]=useState(0);
 
-  const handleNextPage = () => {
-      setPageNumber(prevPage => prevPage + 1);
-  };
 
+  const handleNextPage = () => {
+    console.log(" next");
+    setPageNumber(prevPage => prevPage + 1); // increment the page number correctly
+  };
+  
   const handlePreviousPage = () => {
+    console.log(" prev");
     setbuttonDisable(false);
     if (pageNumber > 0) {
-      setPageNumber(prevPage => prevPage - 1);
+      setPageNumber(prevPage => prevPage - 1); // decrement the page number correctly
     }
   };
+  
 
-  // Fetch data on component mount
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchAllData = async () => {
       try {
-        const response = await getUserStats("6701086467b97a4b1e2ef0b2");
-        
-        // Assuming data.user and data.stats structure matches your example
-        setUser(response.user);
-        setStats(response.stats);
+        const userStats = await getUserStats("6701086467b97a4b1e2ef0b2");
+        setUser(userStats.user);
+        setStats(userStats.stats);
+  
+        const leaderboardResponse = await dashboard_leaderboardTopUsers();
+        setleaderBoardData(leaderboardResponse.data);
+
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
-
-    fetchData();
+  
+    fetchAllData();
   }, []);
-
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await dashboard_leaderboardTopUsers();
-        console.log("response ---> on frontend ",response);
-        setleaderBoardData(response.data);
-        console.log("leaderBoardData ---> on frontend ",leaderBoardData);
-        // Assuming data.user and data.stats structure matches your example
-      
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+  
 
 
   useEffect(() => {
@@ -90,355 +77,12 @@ export default function Dashboard() {
 
   const { totalPoints, totalErrors, rank } = stats;
 
-  const activities = [
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 5,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 5,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 7,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 5,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-    {
-      imageSrc: img,
-      username: "user1",
-      activity: "Weed Infestation",
-      number: 10,
-    },
-  ];
 
   return (
-    <section className="py-10 ">
+    <section className="py-10 bg-primary ">
             <h1 className="text-xl sm:text-2xl lg:text-3xl text-[#181C1E] ml-5 lg:ml-10">
             Welcome Back, {`${user.firstName || ''} ${user.lastName || ''}`.trim() || user.name}!
+
             </h1>
             {totalPoints || totalErrors || rank ? ( // Check if any stats are available
         <section className="bg-[#E7DBCA] text-[#181c1e] flex justify-around text-[9px] sm:text-xs md:text-sm lg:text-lg xl:text-xl items-center w-10/12 sm:w-[45%] md:w-[50%] xl:w-[40%] sm:px-3 xl:px-4 py-3 rounded-lg sm:rounded-2xl lg:rounded-3xl mt-10 mx-auto sm:mx-0 sm:ml-[36%] md:ml-[30%] lg:ml-[30%] xl:ml-[25%] mb-5">
@@ -477,7 +121,7 @@ export default function Dashboard() {
 
           </section>
           <div className=" flex justify-evenly items-center mt-7">
-          <button onClick={handlePreviousPage} disabled={pageNumber === 0} className="px-4 py-2 cursor-pointer  border-2 border-[#181c1e]  bg-[#E7DBCA] rounded-lg" >
+          <button onClick={handlePreviousPage} disabled={pageNumber == 0} className="px-4 py-2 cursor-pointer  border-2 border-[#181c1e]  bg-[#E7DBCA] rounded-lg" >
             Previous
           </button>
           <p>Page No: {pageNumber+1}</p>

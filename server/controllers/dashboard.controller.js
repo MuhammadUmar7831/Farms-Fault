@@ -109,7 +109,6 @@ import mongoose from 'mongoose';
 
 
 export const getUserStats = async (req, res) => {
-    console.log("object");
     const { userId } = req.body;
 
     if (!userId) {
@@ -120,7 +119,6 @@ export const getUserStats = async (req, res) => {
         const userObjectId = new mongoose.Types.ObjectId(userId);
 
         const user = await User.findById(userObjectId);
-        console.log("user:  ",user)
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
@@ -129,7 +127,6 @@ export const getUserStats = async (req, res) => {
         if (!leaderboardEntry) {
             return res.status(404).json({ message: "Leaderboard entry not found for this user" });
         }
-        console.log("leaderboardEntry:  ",leaderboardEntry)
 
         const totalErrors = await Error.countDocuments({ userId: userObjectId });
 

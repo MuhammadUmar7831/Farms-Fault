@@ -1,8 +1,8 @@
 import express from "express";
 import tryCatch from "../middlewares/tryCatch.js";
-import { getLeaderboardUsers } from "../controllers/leaderboard.controller.js";
+import { getRankedUsers } from "../controllers/leaderboard.controller.js";
 const router = express.Router();
 
-router.get("/getleaderboardUsers", tryCatch(getLeaderboardUsers));
+router.post("/getleaderboardUsers", tryCatch(getRankedUsers));
 
 export default router;

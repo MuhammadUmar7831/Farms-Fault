@@ -25,15 +25,15 @@ export default function PrivateRoutes() {
 
   return loggedIn ? (
     <>
-      {/* <div className="bg-[#dacdbb] flex">
-      <main className={`w-[25%] sm:w-[20%] bg-[#F5EAD9] sm:block`}>
+      <div className="bg-[#dacdbb] flex">
+        <main className={`w-[35%] bg-[#F5EAD9] absolute sm:w-[20%] sm:relative h-screen`}>
         <SidePanel />
-      </main> */}
+      </main>
 
-      {/* <section className="w-[75%] sm:w-[80%]"> */}
+      <section className=" w-full sm:w-[80%]">
       <Outlet />
-      {/* </section> */}
-      {/* </div> */}
+      </section>
+      </div>
     </>
   ) : (
     <Navigate to="/signin" />
