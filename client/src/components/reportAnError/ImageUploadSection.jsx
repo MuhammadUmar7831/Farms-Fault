@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import useCloudinary from "../../hooks/useCloudinary";
 
-function ImageUploadSection({errors, images, setImages}) {
-    const [disable, setDisable] = useState(false);
+function ImageUploadSection({disable,setDisable,errors, images, setImages}) {
+    
     const {uploadImage,deleteImage} = useCloudinary();
     const [startIndex, setStartIndex] = useState(0); // Keeps track of the first image in the view
     const handleImageUpload = async (event) => {

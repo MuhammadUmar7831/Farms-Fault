@@ -3,6 +3,7 @@ import ReportErrorMap from "../components/GoogleMap/ReportErrorMap";
 import ErrorForm from "../components/reportAnError/ErrorForm";
 import {addErrorApiCall} from "../apis/error.api";
 import {useGeolocation} from "../hooks/useGeoLocation";
+import toast from "react-hot-toast";
 export default function ReportError() {
     const [type, setType] = useState("");
     const [photos, setPhotos] = useState([]);
@@ -11,6 +12,8 @@ export default function ReportError() {
     const [location, setLocation] = useState({lat: 40.0139, lng: -83.0104});
     const {isLoading, position, error, getPosition} = useGeolocation();
     const [errors, setErrors] = useState({type: false, photos: false});
+    const [disable, setDisable] = useState(false);
+
     useEffect(() => {
         getPosition();
     }, []);
@@ -20,17 +23,19 @@ export default function ReportError() {
 
     const handleSubmit = async () => {
         if (type === "") {
-            setErrors((prevErrors) => ({ ...prevErrors, type: true }));
+            setErrors((prevErrors) => ({...prevErrors, type: true}));
+            toast.error("Please Select Type of Error");
             return;
         } else {
-            setErrors((prevErrors) => ({ ...prevErrors, type: false }));
+            setErrors((prevErrors) => ({...prevErrors, type: false}));
         }
-    
+
         if (photos.length === 0) {
-            setErrors((prevErrors) => ({ ...prevErrors, photos: true }));
+            setErrors((prevErrors) => ({...prevErrors, photos: true}));
+            toast.error("Please Select At least One Picture");
             return;
         } else {
-            setErrors((prevErrors) => ({ ...prevErrors, photos: false }));
+            setErrors((prevErrors) => ({...prevErrors, photos: false}));
         }
 
         const body = {
@@ -44,10 +49,15 @@ export default function ReportError() {
             points,
         };
         const res = await addErrorApiCall(body);
+        if (res.message === "Error with this location and type already exists for this user") {
+            toast.error("Error with this location and type already exists for your Account");
+            return;
+        }
         setType("");
         setPhotos([]);
         setDescription("");
         setPoints(0);
+        toast.success("Error Reported Successfully");
         console.log(res);
     };
 
@@ -56,7 +66,10 @@ export default function ReportError() {
             <h1 className="heading font-light ml-14">Report an error</h1>
             <div className="flex flex-col items-center lg:items-start justify-center  space-x-12 lg:h-[100vh] lg:flex-row">
                 <ErrorForm
+                    setDisable={setDisable}
+                    disable={disable}
                     description={description}
+                    type={type}
                     setType={setType}
                     photos={photos}
                     setPoints={setPoints}
@@ -66,7 +79,10 @@ export default function ReportError() {
                 >
                     <button
                         onClick={() => handleSubmit()}
-                        className="bg-tertiary text-white txt-lg promoTest font-light  p-4"
+                        className={`bg-tertiary text-white txt-lg promoTest font-light  p-4  ${
+                            disable ? "cursor-not-allowed opacity-50" : "cursor-pointer"
+                        }`}
+                        disabled={disable}
                     >
                         Report Error
                     </button>

@@ -5,7 +5,7 @@ import convertToDMS from "../../utils/mapCordinatesConvertor";
 function ViewMap({points, width, height, setSelectedPoint,setOpenInfo,location}) {
     const {isLoaded} = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: "AIzaSyCt0RICkMcvoqaM-8Yog82-5cEw1OC3TYM",
+        googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API_KEY,
     });
     const [map, setMap] = useState(null);
     const onLoad = useCallback(

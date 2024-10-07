@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { GoogleMap, useJsApiLoader, MarkerF, OverlayView, Autocomplete } from "@react-google-maps/api";
 import convertToDMS from "../../utils/mapCordinatesConvertor";
-
 const containerStyle = {
     width: "650px",
     height: "400px",
@@ -10,7 +9,7 @@ const containerStyle = {
 function ReportErrorMap({point, setPoint}) {
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: "AIzaSyCt0RICkMcvoqaM-8Yog82-5cEw1OC3TYM",
+        googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API_KEY,
         libraries: ["places"], 
     });    
     const [map, setMap] = useState(null);
