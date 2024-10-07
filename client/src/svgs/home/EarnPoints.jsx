@@ -1,8 +1,9 @@
 import React from "react";
 
-export default function EarnPoints() {
+export default function EarnPoints({ className }) {
   return (
     <svg
+      className={className}
       width="51"
       height="51"
       viewBox="0 0 51 51"

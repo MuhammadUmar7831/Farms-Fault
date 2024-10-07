@@ -1,8 +1,9 @@
 import React from "react";
 
-export default function ReporIt() {
+export default function ReporIt({ className }) {
   return (
     <svg
+      className={className}
       width="57"
       height="50"
       viewBox="0 0 57 50"
