@@ -4,6 +4,8 @@ import ErrorForm from "../components/reportAnError/ErrorForm";
 import {addErrorApiCall} from "../apis/error.api";
 import {useGeolocation} from "../hooks/useGeoLocation";
 import toast from "react-hot-toast";
+import {useNavigate} from "react-router-dom";
+import Loader from "../svgs/loader";
 export default function ReportError() {
     const [type, setType] = useState("");
     const [photos, setPhotos] = useState([]);
@@ -13,7 +15,8 @@ export default function ReportError() {
     const {isLoading, position, error, getPosition} = useGeolocation();
     const [errors, setErrors] = useState({type: false, photos: false});
     const [disable, setDisable] = useState(false);
-
+    const [loadApi, setLoadApi] = useState(false);
+    const navigate = useNavigate();
     useEffect(() => {
         getPosition();
     }, []);
@@ -48,7 +51,9 @@ export default function ReportError() {
             },
             points,
         };
+        setLoadApi(true);
         const res = await addErrorApiCall(body);
+        setLoadApi(false);
         if (res.message === "Error with this location and type already exists for this user") {
             toast.error("Error with this location and type already exists for your Account");
             return;
@@ -56,9 +61,11 @@ export default function ReportError() {
         setType("");
         setPhotos([]);
         setDescription("");
+        localStorage.setItem("points", points);
         setPoints(0);
-        toast.success("Error Reported Successfully");
-        console.log(res);
+        navigate('/report-confirmation');
+        // toast.success("Error Reported Successfully");
+        // console.log(res);
     };
 
     return (
@@ -84,7 +91,7 @@ export default function ReportError() {
                         }`}
                         disabled={disable}
                     >
-                        Report Error
+                        {(isLoading||disable||loadApi) ? <Loader color={"white"} className={"animate-spin w-[28px] h-[28px] mx-auto" }/> : "Report Error"}
                     </button>
                 </ErrorForm>
                 <ReportErrorMap point={location} setPoint={setLocation} />

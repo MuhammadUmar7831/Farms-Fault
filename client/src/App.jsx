@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import ReportError from "./pages/ReportError";
 import ViewMap from "./pages/ViewMap";
 import { Toaster } from "react-hot-toast";
+import ReportErrorConfirmation from "./pages/ReportErrorConfirmation";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/account" element={<Account />} />
             <Route path="/report-error" element={<ReportError />} />
             <Route path="/view-map" element={<ViewMap />} />
+            <Route path="/report-confirmation" element={<ReportErrorConfirmation/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
