@@ -15,5 +15,4 @@ function Contribution() {
         </section>
     );
 }
-
 export default Contribution;
