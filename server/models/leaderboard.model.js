@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 const leaderboardSchema = new mongoose.Schema(
   {
     userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+        type: mongoose.Schema.Types.ObjectId, // Store as a string
       required: true,
     },
     totalPoints: {

@@ -88,19 +88,19 @@ export default function Leaderboard() {
             <ul className="flex flex-col justify-center items-center ">
               <li
                 onClick={() => handleSelectOption('Weekly')}
-                className="py-2 hover:bg-gray-100 cursor-pointer"
+                className="p-2 rounded-lg hover:bg-gray-100 cursor-pointer"
               >
                 Weekly
               </li>
               <li
                 onClick={() => handleSelectOption('Monthly')}
-                className="py-2 hover:bg-gray-100 cursor-pointer"
+                className="p-2 rounded-lg hover:bg-gray-100 cursor-pointer"
               >
                 Monthly
               </li>
               <li
                 onClick={() => handleSelectOption('All Time')}
-                className="py-2 hover:bg-gray-100 cursor-pointer"
+                className="p-2 rounded-lg hover:bg-gray-100 cursor-pointer"
               >
                 All Time
               </li>
