@@ -17,12 +17,10 @@ export default function Dashboard() {
 
 
   const handleNextPage = () => {
-    console.log(" next");
     setPageNumber(prevPage => prevPage + 1); // increment the page number correctly
   };
   
   const handlePreviousPage = () => {
-    console.log(" prev");
     setbuttonDisable(false);
     if (pageNumber > 0) {
       setPageNumber(prevPage => prevPage - 1); // decrement the page number correctly
@@ -77,13 +75,13 @@ export default function Dashboard() {
 
 
   return (
-    <section className="py-10 bg-primary ">
-            <h1 className="text-xl sm:text-2xl lg:text-3xl text-[#181C1E] ml-5 lg:ml-10">
+    <section className="py-10 bg-primary w-full ">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl text-[#181C1E] ml-6 lg:ml-10">
             Welcome Back, {`${user.firstName || ''} ${user.lastName || ''}`.trim() || user.name}!
 
             </h1>
             {totalPoints || totalErrors || rank ? ( // Check if any stats are available
-        <section className="bg-[#E7DBCA] text-[#181c1e] flex justify-around text-[9px] sm:text-xs md:text-sm lg:text-lg xl:text-xl items-center w-10/12 sm:w-[45%] md:w-[50%] xl:w-[40%] sm:px-3 xl:px-4 py-3 rounded-lg sm:rounded-2xl lg:rounded-3xl mt-10 mx-auto sm:mx-0 sm:ml-[36%] md:ml-[30%] lg:ml-[30%] xl:ml-[25%] mb-5">
+        <section className="bg-[#E7DBCA] text-[#181c1e] flex justify-around text-xs md:text-sm lg:text-lg xl:text-xl items-center w-[70%] sm:w-[45%] md:w-[50%] xl:w-[40%] sm:px-3 py-3 xl:py-4 rounded-lg sm:rounded-2xl lg:rounded-3xl mt-10 mx-auto mb-5">
           <div className="flex flex-col justify-center items-center">
             <p className="mb-1">{rank}</p>
             <p className="px-3 md:px-5 lg:px-6 rounded-3xl border-2 border-[#181c1e]">Rank</p>
@@ -103,9 +101,9 @@ export default function Dashboard() {
 
       <section className=" sm:flex sm:ml-5 lg:ml-10">
         <section className=" px-2 sm:w-3/6 h-fit ">
-          <h1 className="text-[#181C1E] text-lg lg:text-3xl xl:text-4xl my-2 sm:my-5 sm:pl-0 pl-3">Recent Activity</h1>
+          <h1 className="text-[#181C1E] text-lg lg:text-3xl xl:text-4xl my-2 sm:my-5 pl-5 sm:pl-0">Recent Activity</h1>
 
-          <section className={`custom-scrollbar overflow-y-auto ${recentActivity.length<=8?"h-fit":"h-[392px]"} `}>
+          <section className={`custom-scrollbar overflow-y-auto ${recentActivity.length<=8?"h-fit":""} sm:h-[300px] lg:h-[410px] px-3 mx-2 sm:mx-0 lg:px-0 `}>
           {recentActivity?.map((activity, index) => (
   <RecentActivity
     key={index}
@@ -117,19 +115,19 @@ export default function Dashboard() {
 ))}
 
           </section>
-          <div className=" flex justify-evenly items-center mt-7">
-          <button onClick={handlePreviousPage} disabled={pageNumber == 0} className="px-4 py-2 cursor-pointer  border-2 border-[#181c1e]  bg-[#E7DBCA] rounded-lg" >
+          <div className=" flex justify-evenly items-center  my-5 lg:my-7 text-xs sm:text-sm lg:text-base">
+          <button onClick={handlePreviousPage} disabled={pageNumber == 0} className="px-3 py-1 cursor-pointer  border-2 border-[#181c1e]  bg-[#E7DBCA] rounded-md" >
             Previous
           </button>
           <p>Page No: {pageNumber+1}</p>
-          <button onClick={handleNextPage}   disabled={buttonDisable}  className="px-4 py-2 cursor-pointer border-2 border-[#181c1e] bg-[#E7DBCA]  rounded-lg" >
+          <button onClick={handleNextPage}   disabled={buttonDisable}  className="px-3 py-1 cursor-pointer border-2 border-[#181c1e] bg-[#E7DBCA]  rounded-md" >
             Next
           </button>
           </div>
 
         </section>
-        <section className="  w-full px-3 sm:ml-5 lg:ml-10 sm:w-3/6 ">
-          <div className="  flex justify-between items-center w-full lg:w-[80%] xl:w-[68%]">
+        <section className="  w-full px-8 sm:px-2 lg:px-6 xl:px-10 sm:w-3/6 ">
+          <div className="  flex justify-between items-center w-full sm:w-[70%] lg:w-[88%] xl:w-[68%]">
             <h1 className="text-[#181C1E] text-lg sm:text-xl lg:text-3xl xl:text-4xl my-5 ">Leaderboard</h1>
             <p>
               <Link to="/leaderboard" className="underline  text-sm lg:text-base">
@@ -138,7 +136,7 @@ export default function Dashboard() {
             </p>
           </div>
 
-          <div className=" sm:ml-5 text-xs sm:text-base px-3 sm:px-1 sm:w-[65%] lg:w-[80%] xl:w-[66%]  flex justify-between items-center">
+          <div className=" sm:ml-5 text-xs sm:text-base xl:text-lg px-3 sm:px-1 sm:w-[65%] lg:w-[80%] xl:w-[63%]  flex justify-between items-center">
             <p>Rank</p>
             <p>Points</p>
           </div>

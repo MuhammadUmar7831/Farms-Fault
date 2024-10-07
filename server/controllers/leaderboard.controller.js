@@ -6,7 +6,6 @@ import mongoose from 'mongoose';
 
 export const getRankedUsers = async (req, res) => {
     const { time } = req.body; // Time period could be 'weekly', 'monthly', or 'anytime'
-    try {
         // Step 1: Set the time range based on the provided time period
         let startDate;
         const currentDate = new Date();
@@ -46,16 +45,10 @@ export const getRankedUsers = async (req, res) => {
         });
 
         // Step 6: Send the response
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             data: response,
         });
 
-    } catch (error) {
-        console.error("Error fetching ranked users:", error);
-        res.status(500).json({
-            success: false,
-            message: 'An error occurred while fetching ranked users.',
-        });
-    }
+
 };

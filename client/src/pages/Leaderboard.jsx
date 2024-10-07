@@ -38,7 +38,7 @@ export default function Leaderboard() {
   }, [selectedOption]);
 
   return (
-    <main className=" px-4 sm:px-0 sm:pl-5 lg:pl-10 bg-primary ">
+    <main className=" px-4 sm:px-0 sm:pl-5 lg:pl-16 xl:pl-20 bg-primary w-full ">
       <div className=" sm:w-[73%] md:w-[75%] lg:w-[80%] xl:w-[58%] flex items-center justify-between mt-10  sm:ml-[5%] lg:ml-0">
         <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl">Leader Board</h1>
         <div className="flex justify-between gap-4 items-center">
@@ -50,7 +50,7 @@ export default function Leaderboard() {
         </button>
         </div>
         {showDropdown && (
-          <div className="absolute right-4 sm:right-7 md:right-10 lg:right-[6%] xl:right-[26%] top-20 xl:top-24  w-fit px-4 lg:px-7 bg-[#e7dbca]  rounded-md shadow-lg z-10">
+          <div className="absolute right-4 sm:right-14 md:right-[9%] lg:right-[5%] xl:right-[25%] top-20   w-fit px-4 lg:px-7 bg-[#e7dbca]  rounded-md shadow-lg z-10">
             <ul className="flex flex-col justify-center items-center text-xs">
               <li
                 onClick={() => handleSelectOption('weekly')}
