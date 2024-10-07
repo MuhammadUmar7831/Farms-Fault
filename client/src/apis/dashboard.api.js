@@ -5,7 +5,6 @@ export const getUserStats = async (userId) => {
     const response = await axios.post('http://localhost:5000/api/dashboard/getUserStats', {
         userId: userId,
     });    
-    console.log("response -- ",response);
     return response.data;
   } catch (error) {
     if (error.response) {
@@ -22,7 +21,6 @@ export const recentErrors = async (page) => {
       const response = await axios.post('http://localhost:5000/api/dashboard/getUserErrors',{
         page:page,
       });    
-      console.log("response in api frontend: ",response);
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -38,7 +36,6 @@ export const recentErrors = async (page) => {
   export const dashboard_leaderboardTopUsers = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/dashboard/getTopUsers');    
-      console.log("response -- ",response);
       return response.data;
     } catch (error) {
       if (error.response) {

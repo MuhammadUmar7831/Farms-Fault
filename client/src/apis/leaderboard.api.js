@@ -7,7 +7,6 @@ export const getleaderBoardRankedUsers = async (time="") => {
     const response = await axios.post('http://localhost:5000/api/leaderboard/getleaderboardUsers', {
         time: time,
     });    
-    console.log("response -- ",response);
     return response.data;
   } catch (error) {
     if (error.response) {

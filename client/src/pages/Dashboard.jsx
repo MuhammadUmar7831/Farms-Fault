@@ -54,11 +54,9 @@ export default function Dashboard() {
     const fetchData = async () => {
       try {
         const response = await recentErrors(pageNumber);
-        console.log("response ---> on frontend ",response);
      
           setRecentActivity(response.data.formattedErrors);
           setbuttonDisable(response.data.disableNextButton);       
-        // Assuming data.user and data.stats structure matches your example
       
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -115,7 +113,6 @@ export default function Dashboard() {
     username={`${activity.user.firstName} ${activity.user.lastName}`} // Full username
     errorType={activity.errorType}         // Error type
     points={activity.points}                // Points
-                 // Some number you may want to display
   />
 ))}
 
@@ -141,7 +138,7 @@ export default function Dashboard() {
             </p>
           </div>
 
-          <div className=" sm:ml-5 text-xs sm:text-base px-3 sm:w-[65%] lg:w-[56%] xl:w-[66%]  flex justify-between items-center">
+          <div className=" sm:ml-5 text-xs sm:text-base px-3 sm:px-1 sm:w-[65%] lg:w-[80%] xl:w-[66%]  flex justify-between items-center">
             <p>Rank</p>
             <p>Points</p>
           </div>
