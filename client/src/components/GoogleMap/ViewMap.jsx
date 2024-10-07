@@ -6,6 +6,7 @@ function ViewMap({points, width, height, setSelectedPoint,setOpenInfo,location})
     const {isLoaded} = useJsApiLoader({
         id: "google-map-script",
         googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API_KEY,
+        libraries: ["places"]
     });
     const [map, setMap] = useState(null);
     const onLoad = useCallback(
@@ -23,7 +24,7 @@ function ViewMap({points, width, height, setSelectedPoint,setOpenInfo,location})
     }, []);
 
     return isLoaded ? (
-        <div className="rounded-xl">
+        <div className="rounded-xl lg:px-20 px-2">
             <GoogleMap
                 mapContainerStyle={{width, height}}
                 center={{lat: location.lat, lng:location.lng}}

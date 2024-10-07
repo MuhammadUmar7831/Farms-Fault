@@ -24,16 +24,10 @@ export default function PrivateRoutes() {
     }
 
     return loggedIn ? (
-        <>
-            <div className="bg-[#dacdbb] flex">
-                <main className={`w-[25%] sm:w-[20%] bg-[#F5EAD9] sm:block`}>
-                    <SidePanel />
-                </main>
-                <section className="w-[75%] sm:w-[80%]">
-                    <Outlet />
-                </section>
-            </div>
-        </>
+        <div className="flex">
+            <SidePanel />
+            <Outlet />
+        </div>
     ) : (
         <Navigate to="/signin" />
     );

@@ -69,9 +69,9 @@ export default function ReportError() {
     };
 
     return (
-        <div className="flex flex-col overflow-x-auto space-y-10 py-8">
-            <h1 className="heading font-light ml-14">Report an error</h1>
-            <div className="flex flex-col items-center lg:items-start justify-center  space-x-12 lg:h-[100vh] lg:flex-row">
+        <div className="flex flex-col w-[100%] px-10 overflow-x-auto space-y-10 py-8 bg-primary">
+            <h1 className="heading font-light lg:ml-14">Report an error</h1>
+            <div className="flex flex-col items-center lg:items-start justify-center w-[100%] space-x-0 lg:space-x-12 lg:flex-row">
                 <ErrorForm
                     setDisable={setDisable}
                     disable={disable}
