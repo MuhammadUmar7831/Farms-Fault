@@ -17,19 +17,19 @@
 }
 
 .heading {
-    @apply text-[33px] poppins font-semibold
+    @apply text-[20px] md:text-[33px] poppins font-semibold
 }
 
 .heading-lg {
-    @apply text-[35px] promoTest font-bold
+    @apply text-[25px] md:text-[35px] promoTest font-bold
 }
 
 .txt {
-    @apply poppins text-[13.66px]
+    @apply poppins text-[10px] md:text-[13.66px]
 }
 
 .txt-lg {
-    @apply poppins text-[18.66px]
+    @apply poppins text-[13.66px] md:text-[18.66px]
 }
 
 .authForm {

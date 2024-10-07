@@ -4,7 +4,7 @@ import Email from "../svgs/auth/Email";
 import Password from "../svgs/auth/Password";
 import { signinApiCall } from "../apis/auth.api";
 import Loader from "../svgs/loader";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export default function Signin() {
   const [email, setEmail] = useState("");
@@ -38,13 +38,13 @@ export default function Signin() {
   return (
     <main className="flex items-center justify-center flex-col gap-5 bg-primary py-10">
       <h1 className="heading-lg">Farm Faults</h1>
-      <div className="w-[80%] bg-secondary authForm flex flex-col justify-start items-center pt-5 pb-16">
-        <h1 className="heading">Login in Your account</h1>
+      <div className="w-[80%] bg-secondary authForm flex flex-col justify-start items-center pt-5 pb-16 px-2">
+        <h1 className="heading text-center">Login in Your account</h1>
         <form
           onSubmit={signin}
           className="flex flex-wrap gap-[30px] mt-10 max-w-[728px] justify-center"
         >
-          <div className="flex flex-col gap-[3.9px] w-[544px]">
+          <div className="flex flex-col gap-[3.9px] md:w-[544px]">
             <label htmlFor="email" className="txt">
               Email Id:
             </label>
@@ -54,7 +54,7 @@ export default function Signin() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="info@provistechnologies.com"
-                className="focus:outline-none bg-transparent w-full h-full py-2 px-4"
+                className="focus:outline-none bg-transparent poppins w-full h-full py-2 px-4"
                 disabled={loading}
               />
               <div className="bg-tertiary h-full p-2 rounded-[5px]">
@@ -62,7 +62,7 @@ export default function Signin() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-[3.9px] w-[544px]">
+          <div className="flex flex-col gap-[3.9px] md:w-[544px]">
             <label htmlFor="email" className="txt">
               Password
             </label>
@@ -72,7 +72,7 @@ export default function Signin() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter you password"
-                className="focus:outline-none bg-transparent w-full h-full py-2 px-4"
+                className="focus:outline-none bg-transparent poppins w-full h-full py-2 px-4"
                 disabled={loading}
               />
               <div className="bg-tertiary h-full p-2 rounded-[5px]">
@@ -83,10 +83,10 @@ export default function Signin() {
               Forget password?
             </p>
           </div>
-          <div className="flex flex-col mt-10 gap-5 items-center w-[550px]">
+          <div className="flex flex-col mt-10 gap-5 items-center w-full md:w-[550px]">
             <button
               disabled={loading}
-              className="bg-tertiary loginBtnShadow w-[544px] rounded-[5px] py-3 text-center txt-lg text-white"
+              className="bg-tertiary loginBtnShadow w-full md:w-[544px] rounded-[5px] py-3 text-center txt-lg text-white"
             >
               {loading ? (
                 <Loader color="#fff" className="w-[28px] h-[28px] mx-auto" />
@@ -101,7 +101,7 @@ export default function Signin() {
             </div>
             <Link
               to="/signup"
-              className="bg-tertiary loginBtnShadow w-[349px] rounded-[5px] py-3 text-center txt font-semibold text-white"
+              className="bg-tertiary loginBtnShadow w-full md:w-[349px] rounded-[5px] py-3 text-center txt font-semibold text-white"
             >
               Create account
             </Link>

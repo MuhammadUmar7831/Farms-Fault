@@ -13,7 +13,7 @@ const errorSchema = new mongoose.Schema(
     },
     photos: {
       type: [String],
-      required: true, // nogotiate
+      required: true,
     },
     description: {
       type: String,

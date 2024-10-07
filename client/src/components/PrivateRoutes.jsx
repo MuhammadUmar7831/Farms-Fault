@@ -10,7 +10,6 @@ export default function PrivateRoutes() {
   async function verifyLogin() {
     if (!loggedIn) {
       const res = await verifyApiCall();
-      console.log(res)
       setIsLoggedIn(res.success);
       setLoading(false);
     }
@@ -26,16 +25,15 @@ export default function PrivateRoutes() {
 
   return loggedIn ? (
     <>
-      <div className="bg-[#dacdbb] flex">
+      {/* <div className="bg-[#dacdbb] flex">
       <main className={`w-[25%] sm:w-[20%] bg-[#F5EAD9] sm:block`}>
-
         <SidePanel />
-      </main>
+      </main> */}
 
-      <section className="w-[75%] sm:w-[80%]">
-        <Outlet />
-      </section>
-    </div>
+      {/* <section className="w-[75%] sm:w-[80%]"> */}
+      <Outlet />
+      {/* </section> */}
+      {/* </div> */}
     </>
   ) : (
     <Navigate to="/signin" />
