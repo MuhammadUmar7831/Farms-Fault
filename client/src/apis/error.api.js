@@ -15,6 +15,21 @@ export const addErrorApiCall = async (body) => {
       }
     }
   };
+ 
+export const getAllErrorApiCall = async () => {
+    try {
+      const response = await axios.get(`/api/error/get/all`);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        return error.response.data;
+      } else {
+        return { success: false, message: "Server is Down" };
+      }
+    }
+  };
   
 
   
