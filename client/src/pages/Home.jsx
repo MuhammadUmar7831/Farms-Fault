@@ -1,6 +1,8 @@
 import React from "react";
 import Banner from "../components/landingPage/Banner";
 import HowItWorks from "../components/landingPage/HowItWorks";
+import Footer from "../components/landingPage/Footer";
+import Contribution from "../components/landingPage/Contribution";
 
 export default function Home() {
   return (
@@ -12,6 +14,8 @@ export default function Home() {
         and drive smarter, more efficient agriculture.
       </p>
       <HowItWorks />
+      <Contribution />
+      <Footer />
     </main>
   );
 }
