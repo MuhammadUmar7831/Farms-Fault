@@ -2,9 +2,13 @@ import mongoose from "mongoose";
 
 const errorSchema = new mongoose.Schema(
   {
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      required: true,
+    },
     type: {
       type: String,
-      enum: ["Pest", "Fertilizers", "Disease", "Weather", "Irrigation"], // nogotiate
       required: true,
     },
     photos: {
@@ -15,11 +19,6 @@ const errorSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    // timestamp: {
-    //   type: Date,
-    //   default: Date.now,
-    //   required: true,
-    // },
     points: {
       type: Number,
       required: true,
@@ -29,13 +28,13 @@ const errorSchema = new mongoose.Schema(
         type: Number,
         required: true,
       },
-      latirude: {
+      latitude: {
         type: Number,
         required: true,
       },
     },
   },
-  { timestamps: true }
+  { timestamps: { createdAt: true, updatedAt: false } }
 );
 
 const Error = mongoose.model("Error", errorSchema);

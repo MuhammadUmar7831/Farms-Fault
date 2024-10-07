@@ -4,6 +4,7 @@ import connectDB from "./db.js";
 import authRouter from "./routes/auth.route.js";
 import errorRouter from "./routes/errorReport.route.js";
 import dashboardRouter from "./routes/dashboard.route.js";
+import leaderboardRouter from"./routes/leaderboard.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRouter);
 app.use("/api/error", errorRouter);
 app.use("/api/dashboard", dashboardRouter);
+app.use("/api/leaderboard", leaderboardRouter);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
