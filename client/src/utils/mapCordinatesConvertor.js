@@ -5,6 +5,5 @@ export default function convertToDMS(coordinate, type) {
     const minutes = Math.floor(minutesNotTruncated);
     const seconds = Math.floor((minutesNotTruncated - minutes) * 60);
     const direction = coordinate >= 0 ? (type === "lat" ? "N" : "E") : (type === "lat" ? "S" : "W");
-    console.log(`${degrees}°${minutes}'${seconds}"${direction}`);
     return `${degrees}°${minutes}'${seconds}"${direction}`;
 }
