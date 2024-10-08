@@ -2,13 +2,14 @@ import User from "../models/user.model.js";
 import Leaderboard from "../models/leaderboard.model.js";
 import Error from "../models/error.model.js";
 import mongoose from 'mongoose'; 
+import { errorHandler } from "../errors/error.js";
 
 
 export const getUserStats = async (req, res) => {
-    const { userId } = req.body;
+    const userId  = req.userId;
 
     if (!userId) {
-        return res.status(400).json({ message: "User ID is required" });
+        return next(errorHandler(404, "User ID is required"));
     }
 
         // Convert userId to ObjectId
@@ -16,12 +17,12 @@ export const getUserStats = async (req, res) => {
 
         const user = await User.findById(userObjectId);
         if (!user) {
-            return res.status(404).json({ message: "User not found" });
+            return next(errorHandler(404, "User not found"));
         }
 
         const leaderboardEntry = await Leaderboard.findOne({ userId: userObjectId });
         if (!leaderboardEntry) {
-            return res.status(404).json({ message: "Leaderboard entry not found for this user" });
+            return res.status(404).send({ success: false, message: "Leaderboard entry not found for this user" });
         }
 
         const totalErrors = await Error.countDocuments({ userId: userObjectId });
@@ -29,6 +30,7 @@ export const getUserStats = async (req, res) => {
         const rank = await Leaderboard.countDocuments({ totalPoints: { $gt: leaderboardEntry.totalPoints } }) + 1;
 
         return res.status(200).json({
+            success: true,
             user: {
                 id: user._id,
                 firstName: user.firstName,
@@ -41,6 +43,7 @@ export const getUserStats = async (req, res) => {
                 totalErrors,
                 rank,
             },
+            message: "Stats Retrieved"
         });
     
 };
