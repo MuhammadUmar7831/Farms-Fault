@@ -4,11 +4,13 @@ import Filter from "../svgs/leaderBoardSvgs/Filter.svg";
 import img from "../../public/images/leaderboard/image.png";
 import RankCard from "../components/leaderboard/RankCard";
 import { getleaderBoardRankedUsers } from "../apis/leaderboard.api";
+import Loader from "../svgs/Loader";
 export default function Leaderboard() {
 
   const [selectedOption, setSelectedOption] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const [leaderBoardUsers,setLeaderBoardUsers]=useState([]);
+  const [loading, setLoading] = useState(true); // Loading state
 
   const handleToggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -22,6 +24,7 @@ export default function Leaderboard() {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await getleaderBoardRankedUsers(selectedOption);
         console.log("response ---> on frontend ",response);
@@ -32,12 +35,18 @@ export default function Leaderboard() {
       } catch (error) {
         console.error('Error fetching data:', error);
       }
+      setLoading(false);
     };
 
     fetchData();
   }, [selectedOption]);
 
-  return (
+  return loading?(
+    <div className="flex flex-col w-full h-screen justify-center items-center">
+    <Loader color="#181C1E" className="w-10 h-10  animate-spin" /> {/* Loader Component */}
+    <h1 className="heading txt py-3">Loading...</h1>
+  </div>
+  ): (
     <main className=" px-4 sm:px-0 sm:pl-5 lg:pl-16 xl:pl-20 bg-primary w-full ">
       <div className=" sm:w-[73%] md:w-[75%] lg:w-[80%] xl:w-[58%] flex items-center justify-between mt-10  sm:ml-[5%] lg:ml-0">
         <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl">Leader Board</h1>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { deletetUserApiCall, getUserApiCall } from "../apis/auth.api";
 import toast from "react-hot-toast";
-import Loader from "../svgs/loader";
 import { useNavigate } from "react-router-dom";
+import Loader from "../svgs/Loader";
 
 export default function Account() {
   const [user, setUser] = useState(null);
@@ -35,7 +35,13 @@ export default function Account() {
   }, []);
 
   if (user === null) {
-    return <main className="bg-prim w-full h-full"></main>;
+    return (
+      <div className="flex flex-col w-full h-screen justify-center items-center">
+        <Loader color="#181C1E" className="w-10 h-10  animate-spin" />{" "}
+        {/* Loader Component */}
+        <h1 className="heading txt py-3">Loading...</h1>
+      </div>
+    );
   }
 
   return (

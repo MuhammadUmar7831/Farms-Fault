@@ -7,6 +7,7 @@ import { getUserStats, recentErrors } from "../apis/dashboard.api";
 import { Link } from "react-router-dom";
 import { dashboard_leaderboardTopUsers } from "../apis/dashboard.api";
 import toast from "react-hot-toast";
+import Loader from "../svgs/Loader";
 export default function Dashboard() {
   const [user, setUser] = useState({ name: "User" });
   const [buttonDisable, setbuttonDisable] = useState(false);
@@ -18,6 +19,7 @@ export default function Dashboard() {
     rank: 0,
   });
   const [pageNumber, setPageNumber] = useState(0);
+  const [loading, setLoading] = useState(true); // Loading state
 
   const handleNextPage = () => {
     setPageNumber((prevPage) => prevPage + 1); // increment the page number correctly
@@ -32,6 +34,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     const fetchAllData = async () => {
+      setLoading(true); // Start loading
+
       const userStats = await getUserStats();
       console.log(userStats);
       if (userStats.success) {
@@ -40,8 +44,9 @@ export default function Dashboard() {
         const leaderboardResponse = await dashboard_leaderboardTopUsers();
         setleaderBoardData(leaderboardResponse.data);
       } else {
-        toast.error(userStats.message)
+        toast.error(userStats.message);
       }
+      setLoading(false); // End loading after data is fetched
     };
 
     fetchAllData();
@@ -63,9 +68,17 @@ export default function Dashboard() {
   }, [pageNumber]);
 
   const { totalPoints, totalErrors, rank } = stats;
-
+  if (loading) {
+    return (
+      <div className="flex flex-col w-full h-screen justify-center items-center">
+        <Loader color="#181C1E" className="w-10 h-10  animate-spin" />{" "}
+        {/* Loader Component */}
+        <h1 className="heading txt py-3">Loading...</h1>
+      </div>
+    );
+  }
   return (
-    <section className="py-10 bg-primary w-full ">
+    <section className="pt-10 bg-primary w-full ">
       <h1 className="text-xl sm:text-2xl lg:text-3xl text-[#181C1E] ml-6 lg:ml-10">
         Welcome Back,{" "}
         {`${user.firstName || ""} ${user.lastName || ""}`.trim() || user.name}!
@@ -96,14 +109,14 @@ export default function Dashboard() {
       )}
 
       <section className=" sm:flex sm:ml-5 lg:ml-10">
-        <section className=" px-2 sm:w-3/6 h-fit ">
+        <section className=" px-2 sm:w-3/6 h-fits ">
           <h1 className="text-[#181C1E] text-lg lg:text-3xl xl:text-4xl my-2 sm:my-5 pl-5 sm:pl-0">
             Recent Activity
           </h1>
 
           <section
-            className={`custom-scrollbar overflow-y-auto ${
-              recentActivity.length <= 8 ? "h-fit" : ""
+            className={`custom-scrollbar${
+              recentActivity.length <= 8 ? "h-fits" : ""
             } sm:max-h-[300px] lg:max-h-[410px] px-3 mx-2 sm:mx-0 lg:px-0 `}
           >
             {recentActivity?.map((activity, index) => (
