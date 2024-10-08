@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
     return (
-        <footer className="flex flex-col">
+        <footer className="flex flex-col" id="footers">
             <div className="bg-[#181C1ECC] text-white py-10">
                 <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center px-4  lg:px-20">
                     <div className="flex flex-col lg:w-1/2 lg:p-20">
@@ -15,7 +17,7 @@ function Footer() {
                             Sign up now and start spotting errors! Together, we can cultivate a more informed and
                             resilient farming community.
                         </p>
-                        <button className=" lg:w-[25%] flex justify-center items-center gap-2 bg-secondary text-tertiary rounded-xl py-2 px-4">
+                        <Link to="/signup" className=" lg:w-[25%] flex justify-center items-center gap-2 bg-secondary text-tertiary rounded-xl py-2 px-4">
                             Get Started
                             <svg
                                 width="15"
@@ -30,7 +32,7 @@ function Footer() {
                                     fill="#181C1E"
                                 />
                             </svg>
-                        </button>
+                        </Link>
                     </div>
                 </div>
                 <div className="flex  justify-center">

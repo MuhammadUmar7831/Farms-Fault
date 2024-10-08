@@ -5,7 +5,7 @@ import InteractiveMapSvg from '../../svgs/home/InteractiveMap.svg';
 
 const ExploreFeatures = () => {
     return (
-        <section className="flex flex-col lg:flex-row justify-center bg-primary px-4 py-8 lg:px-28 lg:py-20 ">
+        <section className="flex flex-col lg:flex-row justify-center bg-primary px-4 py-8 lg:px-28 lg:py-20" id='exploreFeatures'>
             <div className=" lg:w-[60%] space-y-4 md:space-y-7 pb-10 lg:pb-0">
                 <div className=' space-y-3 border-l-2 pl-2 border-[#181C1E]'>
                 <h4 className="text-4xl">Explore our features!</h4>

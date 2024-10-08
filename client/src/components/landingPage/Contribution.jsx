@@ -1,6 +1,6 @@
 function Contribution() {
     return (
-        <section className="flex flex-col lg:flex-row justify-center bg-secondary px-4 py-8 lg:px-28 lg:py-20">
+        <section className="flex flex-col lg:flex-row justify-center bg-secondary px-4 py-8 lg:px-28 lg:py-20" id="contribution">
             <div className="lg:w-[60%] py-4 lg:py-20 flex flex-col justify-center space-y-2">
                 <h4 className="text-4xl">Why Your Contribution Matters?</h4>
                 <p className="lg:w-[75%]">

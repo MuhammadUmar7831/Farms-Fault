@@ -1,5 +1,6 @@
 import React from "react";
 import Arrow from "../../svgs/home/Arrow";
+import { Link } from "react-router-dom";
 
 export default function Banner() {
   return (
@@ -17,10 +18,10 @@ export default function Banner() {
           Turn your farming insights into points and help cultivate a smarter,
           healthier harvest.
         </p>
-        <button className="promoTest mt-[20px] flex gap-[8px] items-center rounded-[12px] bg-tertiary/90 text-primary w-fit font-bold py-[9px] px-[24px]">
+        <Link to='/signup' className="promoTest mt-[20px] flex gap-[8px] items-center rounded-[12px] bg-tertiary/90 text-primary w-fit font-bold py-[9px] px-[24px]">
           Get Started
           <Arrow />
-        </button>
+        </Link>
       </div>
       <div className="hidden lg:block w-[500px]">
         <div className="columns-2 gap-[15px] space-y-[15px] w-full">
