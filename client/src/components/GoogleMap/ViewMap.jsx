@@ -1,25 +1,51 @@
-import React, {useState, useCallback, useEffect} from "react";
-import {GoogleMap, useJsApiLoader, MarkerF, OverlayView} from "@react-google-maps/api";
+import React, { useState, useCallback, useEffect } from "react";
+import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
 import convertToDMS from "../../utils/mapCordinatesConvertor";
-function ViewMap({points, width, height, setSelectedPoint, setOpenInfo, location}) {
-    const {isLoaded} = useJsApiLoader({
+function ViewMap({ points, width, height, setSelectedPoint, setOpenInfo, location }) {
+    const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
         googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API_KEY,
         libraries: ["places"],
     });
     const [map, setMap] = useState(null);
+    
+    const calculateHighDensityCenter = useCallback(() => {
+        if (!points || points.length === 0) {
+            return { lat: location.lat, lng: location.lng };
+        }
+        const radius = 0.01; // Adjust this radius based on the density you expect
+        let maxCount = 0;
+        let highDensityPoint = points[0].location;
+        points.forEach((pointA) => {
+            const nearbyPoints = points.filter(pointB => {
+                const latDiff = pointA.location.latitude - pointB.location.latitude;
+                const lngDiff = pointA.location.longitude - pointB.location.longitude;
+                return Math.sqrt(latDiff ** 2 + lngDiff ** 2) <= radius;
+            });
+            if (nearbyPoints.length > maxCount) {
+                maxCount = nearbyPoints.length;
+                highDensityPoint = pointA.location;
+            }
+        });
+        return {
+            lat: highDensityPoint.latitude,
+            lng: highDensityPoint.longitude,
+        };
+    }, [points, location]);
+
     const onLoad = useCallback(
         (mapInstance) => {
-            if (location.lat !== 0 && location.lng !== 0) {
-                mapInstance.setCenter({lat: location.lat, lng: location.lng});
-            }
+            const center = calculateHighDensityCenter();
+            mapInstance.setCenter(center);
             setMap(mapInstance);
         },
-        [location]
+        [calculateHighDensityCenter]
     );
+
     const onUnmount = useCallback(() => {
         setMap(null);
     }, []);
+
     useEffect(() => {
         if (map && isLoaded) {
             points.forEach((point, index) => {
@@ -28,7 +54,7 @@ function ViewMap({points, width, height, setSelectedPoint, setOpenInfo, location
                     lng: point.location.longitude + 0.000015,
                 };
                 const div = document.createElement("div");
-                div.className = "flex items-center space-x-2 rounded-md shadow-lg";
+                div.className = "flex items-center space-x-2  ";
                 div.innerHTML = `
                     <div class="text-white font-light">${convertToDMS(point.location.latitude, "lat")}</div>
                     <div class="text-white font-light">${convertToDMS(point.location.longitude, "lng")}</div>
@@ -56,11 +82,12 @@ function ViewMap({points, width, height, setSelectedPoint, setOpenInfo, location
             });
         }
     }, [map, points, isLoaded]);
+
     return isLoaded ? (
         <div className="rounded-xl lg:px-20 px-2">
             <GoogleMap
-                mapContainerStyle={{width, height}}
-                center={{lat: location.lat, lng: location.lng}}
+                mapContainerStyle={{ width, height }}
+                center={calculateHighDensityCenter()}
                 zoom={20}
                 mapTypeId="satellite"
                 onLoad={onLoad}
@@ -69,7 +96,7 @@ function ViewMap({points, width, height, setSelectedPoint, setOpenInfo, location
                 {points.map((point, index) => (
                     <MarkerF
                         key={`marker-${index}`}
-                        position={{lat: point.location.latitude, lng: point.location.longitude}}
+                        position={{ lat: point.location.latitude, lng: point.location.longitude }}
                         icon="./markerIcon.png"
                         onClick={() => {
                             setSelectedPoint(point);
