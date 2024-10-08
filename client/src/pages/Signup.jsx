@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import Loader from "../svgs/loader";
+import Loader from "../svgs/Loader";
 import { signupApiCall } from "../apis/auth.api";
 
 export default function Signup() {
