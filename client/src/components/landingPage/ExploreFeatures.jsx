@@ -1,6 +1,6 @@
 import React from 'react'
-import DashboardSvg from '../../svgs/home/dashboard.svg';
-import FriendlyDesign from '../../svgs/home/friendlyDesign.svg';
+import DashboardSvg from '../../svgs/home/Dashboard.svg';
+import FriendlyDesign from '../../svgs/home/FriendlyDesign.svg';
 import InteractiveMapSvg from '../../svgs/home/InteractiveMap.svg';
 
 const ExploreFeatures = () => {
