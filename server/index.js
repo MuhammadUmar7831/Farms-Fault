@@ -10,13 +10,15 @@ import leaderboardRouter from"./routes/leaderboard.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+// dotenv.config();
 
 connectDB();
 app.use(cookieParser()) ;
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_BASE_URL,
+    methods: ["GET", "POST", "PUT", "DELTE"],
     credentials: true,
   })
 );

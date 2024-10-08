@@ -31,7 +31,7 @@ export const recentErrors = async (page) => {
 export const dashboard_leaderboardTopUsers = async () => {
   try {
     const response = await axios.get(
-      "http://localhost:5000/api/dashboard/getTopUsers"
+      "/api/dashboard/getTopUsers"
     );
     return response.data;
   } catch (error) {

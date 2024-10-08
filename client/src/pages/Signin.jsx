@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Email from "../svgs/auth/Email";
 import Password from "../svgs/auth/Password";
 import { signinApiCall } from "../apis/auth.api";
-import Loader from "../svgs/loader";
+import Loader from "../svgs/Loader";
 import toast from "react-hot-toast";
 
 export default function Signin() {

@@ -5,7 +5,7 @@ import {addErrorApiCall} from "../apis/error.api";
 import {useGeolocation} from "../hooks/useGeoLocation";
 import toast from "react-hot-toast";
 import {useNavigate} from "react-router-dom";
-import Loader from "../svgs/loader";
+import Loader from "../svgs/Loader";
 export default function ReportError() {
     const [type, setType] = useState("");
     const [photos, setPhotos] = useState([]);
