@@ -41,6 +41,7 @@ function ErrorInfo({setOpenInfo, selectedPoint}) {
                                 className="absolute left-[-20px] top-1/2 transform -translate-y-1/2 bg-[#E7DBCA] p-1 rounded-full shadow-md"
                             >
                                 <svg
+                                className="scale-x-[-1]"
                                     width="45"
                                     height="45"
                                     viewBox="0 0 59 59"

@@ -51,9 +51,11 @@ export default function ReportError() {
             },
             points,
         };
+        setDisable(true);
         setLoadApi(true);
         const res = await addErrorApiCall(body);
         setLoadApi(false);
+        setDisable(false);
         if (res.message === "Error with this location and type already exists for this user") {
             toast.error("Error with this location and type already exists for your Account");
             return;
@@ -64,8 +66,6 @@ export default function ReportError() {
         localStorage.setItem("points", points);
         setPoints(0);
         navigate('/report-confirmation');
-        // toast.success("Error Reported Successfully");
-        // console.log(res);
     };
 
     return (
