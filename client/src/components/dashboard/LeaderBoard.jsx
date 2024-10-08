@@ -3,11 +3,12 @@
 import React from 'react';
 
 
-const LeaderBoard =({ userImage, userName, totalPoints, rankIcon }) => {
+const LeaderBoard =({ userImage, userName, totalPoints, rankIcon ,positions}) => {
   return (
     <div className="flex justify-between items-center bg-[#E7DBCA] px-5 p-[2px] sm:py-2 rounded-3xl sm:w-[75%] lg:w-[90%] xl:w-[70%] my-2 text-[10px] sm:text-[9px] md:text-xs xl:text-sm ">
-      <div className="flex items-center w-full gap-3">
-        {rankIcon}
+      <div className="flex items-center w-full gap-3 ">
+      <p className=' w-8 lg:w-12'>  {positions}
+      </p>        {rankIcon}
 <div className='flex items-center w-full'>
         <img src={userImage} alt={userName} className="  w-6 md:w-7 lg:w-9 xl:w-10 object-contain rounded-full" />
 

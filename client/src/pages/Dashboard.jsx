@@ -21,6 +21,8 @@ export default function Dashboard() {
   const [pageNumber, setPageNumber] = useState(0);
   const [loading, setLoading] = useState(true); // Loading state
 
+  const positions = ["1st", "2nd", "3rd", "4th", "5th"];
+
   const handleNextPage = () => {
     setPageNumber((prevPage) => prevPage + 1); // increment the page number correctly
   };
@@ -169,6 +171,7 @@ export default function Dashboard() {
 
           {leaderBoardData?.map((leader, index) => (
             <LeaderBoard
+            positions={positions[index]}
               key={index}
               userImage={img}
               userName={leader.name}
