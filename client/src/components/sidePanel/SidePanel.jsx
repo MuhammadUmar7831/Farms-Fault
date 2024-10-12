@@ -6,6 +6,7 @@ import ReportErrorSVG from "../../svgs/sidePanelSvgs/ReportError.svg";
 import ViewMapSvg from "../../svgs/sidePanelSvgs/ViewMap.svg";
 import {Sling as Hamburger} from "hamburger-react";
 import {useState} from "react";
+import { Link } from "react-router-dom";
 
 const SidePanel = () => {
     const [active, setActive] = useState(true);
@@ -39,7 +40,9 @@ const SidePanel = () => {
 
     return (
         <>
-            <span className="z-40 top-0 left-0 fixed lg:hidden">
+              <h1 className='font-extrabold text-2xl lg:heading-lg absolute top-2 left-3'><Link to="/dashboard">Farm Faults</Link></h1>
+
+            <span className="z-40 top-0 right-0 fixed lg:hidden">
                 <Hamburger toggled={active} toggle={setActive} />
             </span>
            {active&& <div className="min-h-screen h-full bg-secondary px-8 fixed top-0 left-0 lg:static z-30 shadow-xl xl:shadow-none">
