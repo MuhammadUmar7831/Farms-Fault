@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { deletetUserApiCall, getUserApiCall } from "../apis/auth.api";
+import { deletetUserApiCall, getUserApiCall, updateAvatarApiCall } from "../apis/auth.api";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Loader from "../svgs/Loader";
+import getRandomDarkColor from "../utils/randomColor";
+import Edit from "../components/account/Edit";
+import useCloudinary from "../hooks/useCloudinary";
 
 export default function Account() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
   const navigate = useNavigate();
+  const { uploadImage, deleteImage } = useCloudinary();
 
   async function getUser() {
     const response = await getUserApiCall();
@@ -30,6 +35,26 @@ export default function Account() {
     setLoading(false);
   }
 
+  async function uploadAvatar(event) {
+    const file = event.target.files[0];
+    setUploadingAvatar(true);
+    if (user.avatar !== "N/A") {
+      await deleteImage(user.avatar);
+    }
+    const { success, imageUrl } = await uploadImage(file);
+    const response = await updateAvatarApiCall(imageUrl);
+    if (response.success && success) {
+      toast.success("Image upload successfull");
+      setUser({
+        ...user,
+        avatar: imageUrl,
+      });
+    } else {
+      toast.error("Failed to upload image");
+    }
+    setUploadingAvatar(false);
+  }
+
   useEffect(() => {
     getUser();
   }, []);
@@ -49,6 +74,43 @@ export default function Account() {
       <h1 className="promoTest font-semibold text-[36px] mx-2 md:ml-10">
         Account settings
       </h1>
+
+      <div
+        className="w-[200px] aspect-square relative rounded-full mx-auto flex items-center justify-center overflow-hidden"
+        style={{
+          backgroundColor: user.avatar === "N/A" ? getRandomDarkColor() : "",
+        }}
+      >
+        {uploadingAvatar && (
+          <div className="absolute top-0 bg-black/50 left-0 w-full h-full flex items-center justify-center">
+            <Loader color="#fff" className="w-[100px] animate-spin duration-[5000ms]" />
+          </div>
+        )}
+        {user.avatar === "N/A" ? (
+          <span className="text-[120px] text-white">{user.firstName[0]}</span>
+        ) : (
+          <img src={user.avatar} className="w-full h-full object-cover" />
+        )}
+        <div
+          className={`w-full h-full absolute top-0 left-0 opacity-0 hover:opacity-100 ${
+            !uploadingAvatar && "hover:bg-black/50"
+          } flex items-center justify-center`}
+        >
+          {!uploadingAvatar && (
+            <>
+              <Edit className="w-[100px]" />
+              <input
+                className="absolute top-0 left-0 w-full h-full opacity-0"
+                type="file"
+                name="avatar-upload"
+                accept="image/*"
+                id="avatar-upload"
+                onChange={uploadAvatar}
+              />
+            </>
+          )}
+        </div>
+      </div>
       <div className="flex flex-wrap gap-[30px] mt-10 max-w-[728px] justify-center mx-auto px-2 md:px-0">
         <div className="flex flex-col gap-[3.9px] w-[349px]">
           <label htmlFor="first-name" className="poppins text-[13.66px]">
@@ -94,17 +156,6 @@ export default function Account() {
             readOnly
           />
         </div>
-        {/* <div className="flex flex-col gap-[3.9px] w-[349px]">
-          <label htmlFor="password" className="poppins text-[13.66px]">
-            Password
-          </label>
-          <input
-            type="password"
-            className="w-full bg-transparent border poppins border-tertiary rounded-[5px] p-2 focus:outline-none"
-            value={user.password}
-            readOnly
-          />
-        </div> */}
         <div className="w-[349px]" />
         <div className="flex flex-col gap-5 items-start w-full mx-auto md:mx-0">
           <button

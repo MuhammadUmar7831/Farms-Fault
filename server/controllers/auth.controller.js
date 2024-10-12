@@ -51,7 +51,7 @@ export const signup = async (req, res, next) => {
       .cookie("access_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax" ,
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       })
       .status(201)
       .send({ success: true, message: "Account Created!!!" });
@@ -82,7 +82,7 @@ export const signin = async (req, res, next) => {
     .cookie("access_token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax" ,
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     })
     .status(201)
     .send({ success: true, message: "Login Successfull!" });
@@ -131,4 +131,20 @@ export async function logout(req, res, next) {
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
   });
   res.status(200).send({ success: true, message: "Logout Successfull" });
+}
+
+export async function updateAvatar(req, res, next) {
+  const userId = req.userId;
+  const { avatar } = req.body;
+
+  if (typeof avatar != "string") {
+    return next(errorHandler(400, "Expected Body of type {avatar: string}"));
+  }
+
+  await User.findByIdAndUpdate(userId, { avatar }, { new: true });
+
+  res.status(200).send({
+    success: true,
+    message: "Avatar updated successfully",
+  });
 }

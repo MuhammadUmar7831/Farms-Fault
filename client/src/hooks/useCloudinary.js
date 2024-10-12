@@ -11,7 +11,6 @@ const useCloudinary = () => {
       formData.append('folder', folder);
     }
     try {
-      console.log(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`)
       const response = await axios.post(
         `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
         formData,
@@ -23,7 +22,6 @@ const useCloudinary = () => {
 
       return { success: true, imageUrl: response.data.secure_url };
     } catch (err) {
-      console.log(err);
       return { success: false };
     }
   };
@@ -53,10 +51,8 @@ const useCloudinary = () => {
           withCredentials: false
         }
       );
-      console.log('Image deleted successfully');
       return { success: true };
     } catch (err) {
-      console.log(err);
       return { success: false };
     }
   };
