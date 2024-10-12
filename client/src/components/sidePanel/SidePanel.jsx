@@ -4,6 +4,7 @@ import DashboardSvg from "../../svgs/sidePanelSvgs/dashboard.svg";
 import LeaderBoardSvg from "../../svgs/sidePanelSvgs/LeaderBoard.svg";
 import ReportErrorSVG from "../../svgs/sidePanelSvgs/ReportError.svg";
 import ViewMapSvg from "../../svgs/sidePanelSvgs/ViewMap.svg";
+import Logout from "../../svgs/sidePanelSvgs/Logout";
 import {Sling as Hamburger} from "hamburger-react";
 import {useState} from "react";
 
@@ -35,6 +36,11 @@ const SidePanel = () => {
             svg: <Account className="w-4" />,
             text: "Account",
         },
+        {
+            href: "/logout",
+            svg: <Logout className="w-4" />,
+            text: "Logout",
+        },
     ];
 
     return (
@@ -49,7 +55,7 @@ const SidePanel = () => {
                         <SideBarLinks onClick={() => {
                             if (window.innerWidth <= 768) setActive(false);
                         }}
-          key={index} href={link.href} svg={link.svg} text={link.text} />
+                        key={index} href={link.href} svg={link.svg} text={link.text} />
                     ))}
                 </div>
             </div>}

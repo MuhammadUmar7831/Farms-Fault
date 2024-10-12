@@ -42,7 +42,7 @@ const Navbar = () => {
 
   return (
     <nav className=' flex  sm:justify-evenly items-center py-1  sm:py-6 px-5 sm:px-0'>
-        <h1 className='font-extrabold text-[25px] sm:text-3xl lg:heading-lg'>Farm Faults</h1>
+        <Link to="/dashboard" className='font-extrabold text-[25px] sm:text-3xl lg:heading-lg'>Farm Faults</Link>
         <div className="sm:hidden absolute right-0">
         <Hamburger toggled={isOpen} toggle={setIsOpen} color="#181C1E" />
       </div>
@@ -63,7 +63,7 @@ const Navbar = () => {
               </ul>
 
            {isOpen && (
-        <div className="absolute top-[70px] left-0 w-full bg-secondary shadow-lg sm:hidden">
+        <div className="absolute top-[70px] left-0 w-full bg-secondary z-10 shadow-lg sm:hidden">
           <ul className="flex flex-col items-center gap-4 py-8">
             {sidebarLinksData.map((link, index) => (
               <li key={index}>

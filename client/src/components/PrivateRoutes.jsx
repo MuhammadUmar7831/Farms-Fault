@@ -36,6 +36,6 @@ export default function PrivateRoutes() {
       <Outlet />
     </div>
   ) : (
-    <Navigate to="/signin" />
+    <Navigate to="/" />
   );
 }

@@ -23,7 +23,7 @@ export default function Banner() {
           <Arrow />
         </Link>
       </div>
-      <div className="hidden lg:block w-[500px]">
+      <div className="lg:w-[500px] overflow-hidden lg:overflow-visible">
         <div className="columns-2 gap-[15px] space-y-[15px] w-full">
           {farmImages.map((farmImage, idx) => (
             <div

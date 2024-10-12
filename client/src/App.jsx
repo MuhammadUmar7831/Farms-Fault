@@ -11,6 +11,7 @@ import ReportError from "./pages/ReportError";
 import ViewMap from "./pages/ViewMap";
 import { Toaster } from "react-hot-toast";
 import ReportErrorConfirmation from "./pages/ReportErrorConfirmation";
+import Logout from "./pages/Logout";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/report-error" element={<ReportError />} />
             <Route path="/view-map" element={<ViewMap />} />
             <Route path="/report-confirmation" element={<ReportErrorConfirmation/>}/>
+            <Route path="/logout" element={<Logout/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
