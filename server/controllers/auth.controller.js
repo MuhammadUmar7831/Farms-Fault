@@ -49,11 +49,7 @@ export const signup = async (req, res, next) => {
   const { password: pass, ...user } = newUser._doc;
   if (remember) {
     return res
-      .cookie("access_token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "none",
-      })
+      .cookie("access_token", token)
       .status(201)
       .send({ success: true, message: "Account Created!!!" });
   } else {

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Banner() {
   return (
     <section
-      className="flex justify-between flex-col gap-[20px] lg:flex-row px-[20px] py-[20px] lg:py-[0px] lg:px-[50px] lg:h-screen overflow-hidden max-w-[1300px] mx-auto"
+      className="flex justify-between flex-col gap-[20px] lg:flex-row px-[20px] py-[5px] sm:py-[20px] lg:py-[0px] lg:px-[50px] lg:h-screen overflow-hidden max-w-[1300px] mx-auto"
       id="banner"
     >
       <div className="flex flex-col justify-center md:w-[540px] gap-[10px]">
@@ -18,7 +18,7 @@ export default function Banner() {
           Turn your farming insights into points and help cultivate a smarter,
           healthier harvest.
         </p>
-        <Link to='/signup' className="promoTest mt-[20px] flex gap-[8px] items-center rounded-[12px] bg-tertiary/90 text-primary w-fit font-bold py-[9px] px-[24px]">
+        <Link to='/signup' className="promoTest my-[20px] flex gap-[8px] items-center rounded-[12px] bg-tertiary/90 text-primary w-fit font-bold py-[9px] px-[24px]">
           Get Started
           <Arrow />
         </Link>

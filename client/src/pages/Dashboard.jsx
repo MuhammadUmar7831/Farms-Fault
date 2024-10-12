@@ -80,13 +80,16 @@ export default function Dashboard() {
     );
   }
   return (
-    <section className="pt-10 bg-primary w-full ">
-      <h1 className="text-xl sm:text-2xl lg:text-3xl text-[#181C1E] ml-6 lg:ml-10">
+    <section className="pt-10 bg-primary w-full pb-5 ">
+      <div className="visible lg:hidden text-white poppins fixed border-primary right-1 top-2 border bg-[#181c1e] py-1 px-3 rounded-xl">
+        <Link to="/report-error">Report an error</Link>
+      </div>
+      <h1 className="text-xl sm:text-2xl lg:text-3xl text-[#181C1E] ml-6 lg:ml-10 mt-5">
         Welcome Back,{" "}
         {`${user.firstName || ""} ${user.lastName || ""}`.trim() || user.name}!
       </h1>
       {totalPoints || totalErrors || rank ? ( // Check if any stats are available
-        <section className="bg-[#E7DBCA] text-[#181c1e] flex justify-around text-xs md:text-sm lg:text-lg xl:text-xl items-center w-[70%] sm:w-[45%] md:w-[50%] xl:w-[40%] sm:px-3 py-3 xl:py-4 rounded-lg sm:rounded-2xl lg:rounded-3xl mt-10 mx-auto mb-5">
+        <section className="bg-[#E7DBCA] text-[#181c1e] flex justify-around text-xs md:text-sm lg:text-lg xl:text-xl items-center w-[70%] sm:w-[45%] md:w-[50%] xl:w-[40%] sm:px-3 py-3 xl:py-4 rounded-lg sm:rounded-2xl lg:rounded-3xl  mt-6 lg:mt-10 mx-auto mb-5">
           <div className="flex flex-col justify-center items-center">
             <p className="mb-1">{rank}</p>
             <p className="px-3 md:px-5 lg:px-6 rounded-3xl border-2 border-[#181c1e]">
