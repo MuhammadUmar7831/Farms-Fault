@@ -9,9 +9,10 @@ const LeaderBoard = ({
   positions,
 }) => {
   return (
-    <div className="flex justify-between items-center bg-[#E7DBCA] px-5 p-[2px] sm:py-2 rounded-3xl sm:w-[75%] lg:w-[90%] xl:w-[70%] my-2 text-[10px] sm:text-[9px] md:text-xs xl:text-sm ">
-      <div className="flex items-center w-full gap-3 ">
-        <p className=" w-8 lg:w-12"> {positions}</p> {rankIcon}
+    <div className="flex justify-between items-center bg-[#E7DBCA] px-5 p-[2px] sm:py-2 rounded-3xl sm:w-[75%] lg:w-[90%] xl:w-[70%] my-2 text-[10px] sm:text-[9px] md:text-xs xl:text-sm h-fit">
+      <div className="flex items-center w-full gap-2">
+        <p className="min-w-[20px]">{positions}</p>
+        {rankIcon}
         <div className="flex items-center w-full">
           {userImage === "N/A" ? (
             <span
@@ -24,7 +25,7 @@ const LeaderBoard = ({
             <img
               src={userImage}
               alt={userName}
-              className="  w-6 md:w-7 lg:w-9 xl:w-10 object-contain rounded-full"
+              className="w-6 aspect-square md:w-7 lg:w-9 xl:w-10 object-cover rounded-full"
             />
           )}
           <p className="ml-2">{userName}</p>

@@ -112,8 +112,8 @@ export default function Dashboard() {
         <p className="mt-5 text-center">Loading stats...</p> // Optional loading state
       )}
 
-      <section className=" sm:flex sm:ml-5 lg:ml-10">
-        <section className=" px-2 sm:w-3/6 h-fits ">
+      <section className="sm:flex sm:ml-5 lg:ml-10">
+        <section className=" px-2 sm:w-3/6">
           <h1 className="text-[#181C1E] text-lg lg:text-3xl xl:text-4xl my-2 sm:my-5 pl-5 sm:pl-0">
             Recent Activity
           </h1>
@@ -151,7 +151,7 @@ export default function Dashboard() {
             </button>
           </div>
         </section>
-        <section className="  w-full px-8 sm:px-2 lg:px-6 xl:px-10 sm:w-3/6 ">
+        <section className="w-full px-8 sm:px-2 lg:px-6 xl:px-10 sm:w-3/6">
           <div className="  flex justify-between items-center w-full sm:w-[70%] lg:w-[88%] xl:w-[68%]">
             <h1 className="text-[#181C1E] text-lg sm:text-xl lg:text-3xl xl:text-4xl my-5 ">
               Leaderboard
@@ -173,12 +173,12 @@ export default function Dashboard() {
 
           {leaderBoardData?.map((leader, index) => (
             <LeaderBoard
-            positions={positions[index]}
+              positions={positions[index]}
               key={index}
               userImage={leader.avatar}
               userName={leader.name}
               totalPoints={leader.totalPoints}
-              rankIcon={<RankIcon className=" w-3 sm:w-4 lg:w-5" />}
+              rankIcon={<RankIcon className=" w-5 sm:w-6 lg:w-7" />}
             />
           ))}
         </section>
