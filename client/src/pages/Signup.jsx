@@ -96,7 +96,7 @@ export default function Signup() {
 
   return (
     <main className="flex items-center justify-center flex-col gap-5 bg-primary py-10">
-      <h1 className="heading-lg">Farm Faults</h1>
+      <Link to="/dashboard"  className="heading-lg">Farm Faults</Link>
       <div className="w-[80%] bg-secondary authForm flex flex-col justify-start items-center pt-5 pb-16 px-2">
         <h1 className="heading text-center">Create account</h1>
         <form

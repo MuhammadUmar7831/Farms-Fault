@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Banner() {
   return (
     <section
-      className="flex justify-between flex-col gap-[20px] lg:flex-row px-[20px] py-[5px] sm:py-[20px] lg:py-[0px] lg:px-[50px] lg:h-screen overflow-hidden max-w-[1300px] mx-auto"
+      className="flex justify-between flex-col-reverse gap-[20px] lg:flex-row px-[20px] py-[5px] sm:py-[20px] lg:py-[0px] lg:px-[50px] lg:h-screen max-h-[800px] overflow-hidden max-w-[1300px] mx-auto"
       id="banner"
     >
       <div className="flex flex-col justify-center md:w-[540px] gap-[10px]">
@@ -23,7 +23,7 @@ export default function Banner() {
           <Arrow />
         </Link>
       </div>
-      <div className="lg:w-[500px] overflow-hidden lg:overflow-visible">
+      <div className="max-h-[650px] lg:w-[500px] overflow-hidden lg:overflow-visible">
         <div className="columns-2 gap-[15px] space-y-[15px] w-full">
           {farmImages.map((farmImage, idx) => (
             <div

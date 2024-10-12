@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import RankIcon from "../svgs/dashboardSvgs/Rank.svg";
-import img from "../../public/images/dashboard/image.png";
 import LeaderBoard from "../components/dashboard/LeaderBoard";
 import RecentActivity from "../components/dashboard/RecentActivity";
 import { getUserStats, recentErrors } from "../apis/dashboard.api";
@@ -127,7 +126,7 @@ export default function Dashboard() {
             {recentActivity?.map((activity, index) => (
               <RecentActivity
                 key={index}
-                imageSrc={activity.user?.avatar} // User's avatar
+                imageSrc={activity.user.avatar} // User's avatar
                 username={`${activity.user.firstName} ${activity.user.lastName}`} // Full username
                 errorType={activity.errorType} // Error type
                 points={activity.points} // Points
@@ -176,7 +175,7 @@ export default function Dashboard() {
             <LeaderBoard
             positions={positions[index]}
               key={index}
-              userImage={img}
+              userImage={leader.avatar}
               userName={leader.name}
               totalPoints={leader.totalPoints}
               rankIcon={<RankIcon className=" w-3 sm:w-4 lg:w-5" />}

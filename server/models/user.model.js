@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema(
       unique: true,
       validate: {
         validator: function (v) {
-          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); 
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
         },
         message: (props) => `${props.value} is not a valid email!`,
       },
@@ -34,8 +34,7 @@ const userSchema = new mongoose.Schema(
     },
     avatar: {
       type: String,
-      default: "/image.png",
-      required: [true, "Avatar is required"],
+      default: "N/A",
     },
   },
   { timestamps: true }
