@@ -46,7 +46,7 @@ const Navbar = () => {
         <div className="sm:hidden absolute right-0">
         <Hamburger toggled={isOpen} toggle={setIsOpen} color="#181C1E" />
       </div>
-      <ul className=" opacity-0 sm:opacity-100  sm:flex gap-2 sm:gap-7 xl:gap-10 p-3 text-[8px] sm:text-[9px] md:text-xs lg:text-sm xl:text-lg">
+      <ul className=" hidden  sm:flex gap-2 sm:gap-7 xl:gap-10 p-3 text-[8px] sm:text-[9px] md:text-xs lg:text-sm xl:text-lg">
         {firstFourLinks.map((link, index) => (
           <li key={index}>
             <a 
@@ -63,7 +63,7 @@ const Navbar = () => {
               </ul>
 
            {isOpen && (
-        <div className="absolute top-[70px] left-0 w-full bg-secondary z-10 shadow-lg sm:hidden">
+        <div className="absolute top-[50px] left-0 w-full bg-secondary shadow-lg block sm:hidden z-10">
           <ul className="flex flex-col items-center gap-4 py-8">
             {sidebarLinksData.map((link, index) => (
               <li key={index}>
@@ -79,7 +79,7 @@ const Navbar = () => {
           </ul>
         </div>
       )}
-      <div className=' opacity-0 sm:opacity-100 sm:space-x-4 lg:space-x-6 xl:space-x-10 text-[7px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base'>
+      <div className=' hidden sm:block sm:space-x-4 lg:space-x-6 xl:space-x-10 text-[7px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base'>
         <Link to="/signin" className=' p-1 sm:px-3 md:px-4 lg:px-7 sm:py-2 border-[#181C1E] rounded-md md:rounded-xl lg:rounded-3xl border'>Login</Link>
         <Link to="/signup" className=' p-1 sm:px-3 md:px-4 lg:px-7 sm:py-2 text-white bg-[#181C1E] opacity-80 rounded-md md:rounded-xl lg:rounded-3xl'>Register</Link>
       </div>
