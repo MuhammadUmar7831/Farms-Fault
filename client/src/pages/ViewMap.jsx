@@ -30,8 +30,8 @@ export default function ViewMap() {
 
 
     return (
-        <div className="relative w-[100%] bg-primary flex flex-col py-8 ">
-            <h1 className="heading font-light lg:px-20 px-2">View Map</h1>
+        <div className="w-[100%] bg-primary flex flex-col py-8 pt-14  lg:pt-4 ">
+            <h1 className="heading font-light ml-2 lg:ml-14">View Map</h1>
             {!isLoaded && (
                 <ViewMapComp location={location} setOpenInfo={setOpenInfo} setSelectedPoint={setSelectedPoint} points={points} width={"100%"} height={"70vh"} />
             )}

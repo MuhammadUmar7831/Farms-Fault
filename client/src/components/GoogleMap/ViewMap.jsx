@@ -103,7 +103,7 @@ function ViewMap({points, width, height, setSelectedPoint, setOpenInfo, location
 
     return isLoaded ? (
         <div className="relative rounded-xl lg:px-20 px-2">
-            <div className="absolute p-3 z-10 w-64">
+            <div className="absolute p-3 z-10 w-96 lg:w-64">
                 <Autocomplete onLoad={onAutocompleteLoad} onPlaceChanged={onPlaceChanged}>
                     <input
                         ref={inputRef}
