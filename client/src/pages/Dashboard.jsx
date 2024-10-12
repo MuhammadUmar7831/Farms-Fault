@@ -80,8 +80,8 @@ export default function Dashboard() {
     );
   }
   return (
-    <section className="pt-10 bg-primary w-full pb-5 ">
-      <div className="visible lg:hidden text-white poppins fixed border-primary right-1 top-2 border bg-[#181c1e] py-1 px-3 rounded-xl">
+    <section className="pt-10 bg-primary w-full pb-16 ">
+      <div className="visible lg:hidden text-white poppins fixed border-primary left-[50%] bottom-[3%] translate-x-[-50%] border bg-[#181C1E] py-1 px-3 rounded-xl">
         <Link to="/report-error">Report an error</Link>
       </div>
       <h1 className="text-xl sm:text-2xl lg:text-3xl text-[#181C1E] ml-6 lg:ml-10 mt-5">
