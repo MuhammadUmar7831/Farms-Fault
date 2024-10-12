@@ -52,7 +52,7 @@ export const signup = async (req, res, next) => {
       .cookie("access_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax" ,
+        sameSite: process.env.NODE_ENV === "production" ? "lax" : "lax" ,
       })
       .status(201)
       .send({ success: true, message: "Account Created!!!" });
@@ -83,7 +83,7 @@ export const signin = async (req, res, next) => {
     .cookie("access_token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax" ,
+      sameSite: process.env.NODE_ENV === "production" ? "lax" : "lax" ,
     })
     .status(201)
     .send({ success: true, message: "Login Successfull!" });
