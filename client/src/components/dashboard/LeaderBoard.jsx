@@ -16,7 +16,7 @@ const LeaderBoard = ({
         <div className="flex items-center w-full">
           {userImage === "N/A" ? (
             <span
-              className="w-6 aspect-square md:w-6 lg:w-9 xl:w-10 rounded-full text-white text-sm  md:text-base text-center flex items-center justify-center"
+              className="min-w-6 aspect-square md:min-w-6 lg:min-w-9 xl:min-w-10 rounded-full text-white text-sm  md:text-base text-center flex items-center justify-center"
               style={{ backgroundColor: getRandomDarkColor() }}
             >
               {userName[0].toUpperCase()}
