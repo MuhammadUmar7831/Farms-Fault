@@ -52,7 +52,7 @@ export const signup = async (req, res, next) => {
       .cookie("access_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "lax" : "lax" ,
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax" ,
       })
       .status(201)
       .send({ success: true, message: "Account Created!!!" });
@@ -83,7 +83,7 @@ export const signin = async (req, res, next) => {
     .cookie("access_token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "lax" : "lax" ,
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax" ,
     })
     .status(201)
     .send({ success: true, message: "Login Successfull!" });
@@ -117,11 +117,19 @@ export async function deleteUser(req, res, next) {
   await User.findByIdAndDelete(req.userId);
   await Leaderboard.deleteOne({ userId });
   await Error.deleteOne({ userId });
-  res.clearCookie("access_token");
+  res.clearCookie("access_token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+  });
   res.status(200).send({ success: true, message: "User Deleted." });
 }
 
 export async function logout(req, res, next) {
-  res.clearCookie("access_token");
+  res.clearCookie("access_token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+  });
   res.status(200).send({ success: true, message: "Logout Successfull" });
 }
