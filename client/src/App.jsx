@@ -12,6 +12,11 @@ import ViewMap from "./pages/ViewMap";
 import { Toaster } from "react-hot-toast";
 import ReportErrorConfirmation from "./pages/ReportErrorConfirmation";
 import Logout from "./pages/Logout";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import TermsOfServices from "./pages/TermsOfServices";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -28,9 +33,18 @@ function App() {
             <Route path="/account" element={<Account />} />
             <Route path="/report-error" element={<ReportError />} />
             <Route path="/view-map" element={<ViewMap />} />
-            <Route path="/report-confirmation" element={<ReportErrorConfirmation/>}/>
-            <Route path="/logout" element={<Logout/>}/>
+            <Route
+              path="/report-confirmation"
+              element={<ReportErrorConfirmation />}
+            />
+            <Route path="/logout" element={<Logout />} />
           </Route>
+          {/* Static Miscellnious Pages */}
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/tos" element={<TermsOfServices />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>

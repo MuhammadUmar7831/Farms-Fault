@@ -74,13 +74,13 @@ const Navbar = () => {
           <ul className="flex flex-col items-center gap-4 py-8">
             {sidebarLinksData.map((link, index) => (
               <li key={index}>
-                <a
-                  href={link.href}
+                <Link
+                  to={link.href}
                   onClick={() => setIsOpen(false)}
                   className="text-[#181C1E] text-2xl text-left"
                 >
                   {link.text}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
