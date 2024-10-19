@@ -1,20 +1,26 @@
 import React from "react";
+import Navbar from "../components/landingPage/Navbar";
+import Footer from "../components/landingPage/Footer";
 
 export default function PrivacyPolicy() {
   return (
-    <div className="p-10 sm:p-20 bg-primary">
-      <h1 className="heading promoTest">Privacy Policy</h1>
-      <div className="txt poppins space-y-2">
-        {data.map((_data) => (
-          <div>
-            <h1 className="txt-lg underline font-medium poppins">
-              {_data.heading}
-            </h1>
-            <p>{_data.text}</p>
-          </div>
-        ))}
+    <>
+      <Navbar />
+      <div className="p-10 sm:p-20 bg-primary">
+        <h1 className="heading promoTest">Privacy Policy</h1>
+        <div className="txt poppins space-y-2">
+          {data.map((_data) => (
+            <div>
+              <h1 className="txt-lg font-semibold poppins">
+                {_data.heading}
+              </h1>
+              <p>{_data.text}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 

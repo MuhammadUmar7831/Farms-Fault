@@ -39,9 +39,10 @@ const Navbar = () => {
         { href: "/", text: "Home" },
         { href: "/leaderboard", text: "Leader board" },
         { href: "#work", text: "How It Works" },
+        { href: "/about", text: "About" },
         { href: "/contact", text: "Contact" },
       ]
-    : data.slice(0, 3); // Only show 3 links if not verified
+    : data.slice(0, 4); // Only show 3 links if not verified
 
   return (
     <nav className="flex sm:justify-evenly items-center py-1 sm:py-6 px-5 sm:px-0">
@@ -114,6 +115,10 @@ const data = [
   {
     href: "#work",
     text: "How It Works",
+  },
+  {
+    href: "/about",
+    text: "About",
   },
   {
     href: "/contact",
