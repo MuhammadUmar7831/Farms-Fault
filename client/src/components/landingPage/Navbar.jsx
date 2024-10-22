@@ -45,7 +45,7 @@ const Navbar = () => {
     : data.slice(0, 4); // Only show 3 links if not verified
 
   return (
-    <nav className="flex sm:justify-evenly items-center py-1 sm:py-6 px-5 sm:px-0">
+    <nav className="flex sm:justify-evenly items-center py-1 promoTest sm:py-6 px-5 sm:px-0">
       <Link
         to="/dashboard"
         className="font-extrabold text-[25px] sm:text-3xl lg:heading-lg"
@@ -59,12 +59,21 @@ const Navbar = () => {
       <ul className="hidden sm:flex gap-2 sm:gap-7 xl:gap-10 p-3 text-[8px] sm:text-[9px] md:text-xs lg:text-sm xl:text-lg">
         {firstLinks.map((link, index) => (
           <li key={index}>
-            <Link
-              to={link.href}
-              className="flex items-center sm:space-x-2 text-[#181C1E]"
-            >
-              {link.text}
-            </Link>
+            {link.href === "#work" ? (
+              <a
+                href={link.href}
+                className="flex items-center sm:space-x-2 text-[#181C1E]"
+              >
+                {link.text}
+              </a>
+            ) : (
+              <Link
+                to={link.href}
+                className="flex items-center sm:space-x-2 text-[#181C1E]"
+              >
+                {link.text}
+              </Link>
+            )}
           </li>
         ))}
       </ul>
@@ -75,13 +84,23 @@ const Navbar = () => {
           <ul className="flex flex-col items-center gap-4 py-8">
             {sidebarLinksData.map((link, index) => (
               <li key={index}>
-                <Link
-                  to={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-[#181C1E] text-2xl text-left"
-                >
-                  {link.text}
-                </Link>
+                {link.href ? (
+                  <a
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center sm:space-x-2 text-[#181C1E]"
+                  >
+                    {link.text}
+                  </a>
+                ) : (
+                  <Link
+                    to={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="text-[#181C1E] text-2xl text-left"
+                  >
+                    {link.text}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

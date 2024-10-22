@@ -30,6 +30,7 @@ export default function Banner() {
               className={`break-inside-avoid flex-shrink-0 w-full h-[291px] landingPageImageShaddow ${
                 idx > farmImages.length / 2 ? "" : "mt-[-40px]"
               }`}
+              key={idx}
             >
               <img
                 src={farmImage}
