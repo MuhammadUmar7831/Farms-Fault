@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Sling as Hamburger } from "hamburger-react";
 import { verifyApiCall } from "../../apis/auth.api";
 
@@ -7,6 +7,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [sidebarLinksData, setSidebarLinksData] = useState(data);
+  const location = useLocation();
 
   // Function to verify login status
   async function verifyLogin() {
@@ -38,11 +39,18 @@ const Navbar = () => {
     ? [
         { href: "/", text: "Home" },
         { href: "/leaderboard", text: "Leader board" },
-        { href: "#work", text: "How It Works" },
+        { href: "/#work", text: "How It Works" },
         { href: "/about", text: "About" },
         { href: "/contact", text: "Contact" },
       ]
     : data.slice(0, 4); // Only show 3 links if not verified
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) element.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
 
   return (
     <nav className="flex sm:justify-evenly items-center py-1 promoTest sm:py-6 px-5 sm:px-0">
@@ -59,7 +67,7 @@ const Navbar = () => {
       <ul className="hidden sm:flex gap-2 sm:gap-7 xl:gap-10 p-3 text-[8px] sm:text-[9px] md:text-xs lg:text-sm xl:text-lg">
         {firstLinks.map((link, index) => (
           <li key={index}>
-            {link.href === "#work" ? (
+            {link.href === "/#work" ? (
               <a
                 href={link.href}
                 className="flex items-center sm:space-x-2 text-[#181C1E]"
@@ -84,11 +92,11 @@ const Navbar = () => {
           <ul className="flex flex-col items-center gap-4 py-8">
             {sidebarLinksData.map((link, index) => (
               <li key={index}>
-                {link.href ? (
+                {link.href === "/#work" ? (
                   <a
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center sm:space-x-2 text-[#181C1E]"
+                    className="text-[#181C1E] text-2xl text-left"
                   >
                     {link.text}
                   </a>
@@ -132,7 +140,7 @@ const data = [
     text: "Home",
   },
   {
-    href: "#work",
+    href: "/#work",
     text: "How It Works",
   },
   {
