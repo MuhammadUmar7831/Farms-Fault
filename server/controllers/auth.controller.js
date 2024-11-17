@@ -51,7 +51,7 @@ export const signup = async (req, res, next) => {
       .cookie("access_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "strict" : "lax",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       })
       .status(201)
       .send({ success: true, message: "Account Created!!!" });
@@ -82,7 +82,7 @@ export const signin = async (req, res, next) => {
     .cookie("access_token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "strict" : "lax",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     })
     .status(201)
     .send({ success: true, message: "Login Successfull!" });
@@ -119,7 +119,7 @@ export async function deleteUser(req, res, next) {
   res.clearCookie("access_token", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "strict" : "lax",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
   });
   res.status(200).send({ success: true, message: "User Deleted." });
 }
