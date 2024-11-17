@@ -7,6 +7,7 @@ import dashboardRouter from "./routes/dashboard.route.js";
 import errorEnumRouter from "./routes/errorEnum.route.js";
 import cookieParser from "cookie-parser";
 import leaderboardRouter from"./routes/leaderboard.route.js";
+import dotenv from "dotenv";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
