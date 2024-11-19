@@ -57,6 +57,7 @@ export const signup = async (req, res, next) => {
       .send({ success: true, message: "Account Created!!!" });
   } else {
     return res
+      .header("Authorization", `Bearer ${token}`)
       .status(201)
       .send({ success: true, message: "Account Created!!!" });
   }
@@ -84,6 +85,7 @@ export const signin = async (req, res, next) => {
       secure: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     })
+    .header("Authorization", `Bearer ${token}`)
     .status(201)
     .send({ success: true, message: "Login Successfull!" });
 };
@@ -121,7 +123,10 @@ export async function deleteUser(req, res, next) {
     secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
   });
-  res.status(200).send({ success: true, message: "User Deleted." });
+  res
+    .status(200)
+    .header("Authorization", `Bearer ${token}`)
+    .send({ success: true, message: "User Deleted." });
 }
 
 export async function logout(req, res, next) {

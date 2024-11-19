@@ -16,6 +16,9 @@ export const verifyApiCall = async () => {
 export const signinApiCall = async (body) => {
   try {
     const response = await axios.post(`/api/auth/signin`, body);
+    const token = response.headers["authorization"].split(" ")[1];
+    localStorage.setItem("access_token", token);
+    
     return response.data;
   } catch (error) {
     if (error.response) {
@@ -29,6 +32,9 @@ export const signinApiCall = async (body) => {
 export const signupApiCall = async (body) => {
   try {
     const response = await axios.post(`/api/auth/signup`, body);
+    const token = response.headers["authorization"].split(" ")[1];
+    localStorage.setItem("access_token", token);
+
     return response.data;
   } catch (error) {
     if (error.response) {
@@ -68,6 +74,8 @@ export const deletetUserApiCall = async () => {
 export const logoutApiCall = async () => {
   try {
     const response = await axios.delete("/api/auth/logout");
+    localStorage.removeItem("access_token");
+    
     return response.data;
   } catch (error) {
     if (error.response) {

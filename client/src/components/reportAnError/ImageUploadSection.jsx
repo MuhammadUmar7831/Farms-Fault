@@ -11,7 +11,7 @@ function ImageUploadSection({disable,setDisable,errors, images, setImages}) {
             const uploadedImages = [];
             setDisable(true);
             for (const file of files) {
-                const {success, imageUrl} = await uploadImage(file, setDisable);
+                const {success, imageUrl} = await uploadImage(file);
                 if (success && imageUrl) {
                     uploadedImages.push(imageUrl);
                 }

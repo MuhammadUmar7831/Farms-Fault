@@ -20,6 +20,7 @@ app.use(
     origin: process.env.CLIENT_BASE_URL,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
+    exposedHeaders: ["Authorization"]
   })
 );
 app.use(express.urlencoded({ extended: true }));
