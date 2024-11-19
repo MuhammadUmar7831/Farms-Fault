@@ -10,7 +10,7 @@ function Contribution() {
                 </p>
             </div>
             <div className="h-[80vh] lg:w-[40%]  bg-primary">
-                <img className="w-full object-cover" src="/images/landingPage/contribution.png" alt="" />
+                <img className="w-full h-full object-cover" src="/images/landingPage/contribution.jpg" alt="contribution" />
             </div>
         </section>
     );

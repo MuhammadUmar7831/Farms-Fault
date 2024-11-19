@@ -96,7 +96,9 @@ export default function Signup() {
 
   return (
     <main className="flex items-center justify-center flex-col gap-5 bg-primary py-10">
-      <Link to="/dashboard"  className="heading-lg">Farm Faults</Link>
+      <Link to="/dashboard" className="heading-lg">
+        Farm Faults
+      </Link>
       <div className="w-[80%] bg-secondary authForm flex flex-col justify-start items-center pt-5 pb-16 px-2">
         <h1 className="heading text-center">Create account</h1>
         <form
@@ -221,7 +223,14 @@ export default function Signup() {
                 onChange={(e) => setPrivacyPolicy(e.target.value)}
               />
               <label htmlFor="privacy-policy" className="txt">
-                I agree to all Terms and Privacy Policy
+                I agree to all{" "}
+                <Link to="/tos" className="hover:underline">
+                  Terms
+                </Link>{" "}
+                and{" "}
+                <Link to="/privacy-policy" className="hover:underline">
+                  Privacy Policy
+                </Link>
               </label>
             </div>
           </div>
